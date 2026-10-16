@@ -31,4 +31,15 @@ object Constants {
             )
         )
     )
+
+    val COMPATIBILITY_GEOMETRY_DASH_MELTDOWN = Compatibility(
+        name = "Geometry Dash Meltdown",
+        packageName = "com.robtopx.geometrydashmeltdown",
+        apkFileType = ApkFileType.APKM,
+        targets = listOf(
+            AppTarget(
+                version = "2.2.147"
+            )
+        )
+    )
 }
