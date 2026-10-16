@@ -1,0 +1,34 @@
+package app.dieroboter.patches.shared
+
+import app.morphe.patcher.patch.ApkFileType
+import app.morphe.patcher.patch.AppTarget
+import app.morphe.patcher.patch.Compatibility
+
+/**
+ * Shared compatibility declarations, one per app.
+ * Add a new entry here when patches for another app are added to this bundle.
+ */
+object Constants {
+    val COMPATIBILITY_WIFI_FTP_SERVER = Compatibility(
+        name = "WiFi FTP Server",
+        packageName = "com.medhaapps.wififtpserver",
+        apkFileType = ApkFileType.APKM,
+        appIconColor = 0x1C9CEC,
+        targets = listOf(
+            AppTarget(
+                version = "2.4.0"
+            )
+        )
+    )
+
+    val COMPATIBILITY_VIDEO_TO_GIF = Compatibility(
+        name = "GIF Maker",
+        packageName = "com.bk.videotogif",
+        apkFileType = ApkFileType.APK,
+        targets = listOf(
+            AppTarget(
+                version = "2.0.8"
+            )
+        )
+    )
+}

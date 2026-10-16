@@ -1,80 +1,62 @@
-# 👋🧩 Morphe Patches template
+# dieroboter Patches
 
-Template repository for Morphe Patches.
+Personal patch bundle for Morphe: patches for WiFi FTP Server and GIF Maker.
 
 ## ❓ About
 
-Patches for apps I like.
-
-<!-- TODO: Update this about section with a brief introduction/summary about this repo and what it offers. -->
+Patches for apps I use. Currently WiFi FTP Server (8 patches) and GIF Maker (7 patches): ad removal, premium unlock, and telemetry/consent removal.
 
 ### How to use these patches
 
-Click here to add these patches to Morphe: https://morphe.software/add-source?github=xyz-user/xyz-patches
+Click here to add these patches to Morphe: https://morphe.software/add-source?github=dieroboter/morphe-patches
 
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
+> **[v1.0.0-dev.1](https://github.com/dieroboter/morphe-patches/releases/tag/v1.0.0-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;15 patches total
+<details open>
+<summary>📦 GIF Maker&nbsp;&nbsp;•&nbsp;&nbsp;7 patches</summary>
+<br>
 
-<!-- Do not modify this section by hand. The patch list is generated when release.yml creates a new release.
-     
-     If you wish for the patches list to be collapsed, then remove the word 'EXPANDED' from the comment tag above.
+**🎯 Supported versions:**
 
-     If you wish to manually keep this list updated then remove the PATCHES_START and PATCHES_END 
-     comment blocks entirely. -->
+| 2.0.8 |
+| :---: |
 
-#### A list of your patches will automatically be shown here after your first patches release is created.
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Disable AppMetrica activation](#disable-appmetrica-activation) | Makes AppMetrica.activateReporter a no-op, so the AppMetrica reporter the Yandex mediation glue sets up is never activated and its events are dropped. |  |
+| [Disable Singular telemetry](#disable-singular-telemetry) | Prevents the Singular analytics SDK from initializing: its only init call site (the PremiumHelper Singular manager coroutine) returns immediately. |  |
+| [Disable Toto backend](#disable-toto-backend) | Disables the Toto server-driven config/offers backend: its app-start initialization, config reporting (including the background worker), FCM promotional-push token registration and the worker scheduling all become no-ops. |  |
+| [Disable ad consent flow](#disable-ad-consent-flow) | Disables the Google UMP ad-consent flow: the SDK's consent request returns immediately, so no consent information is requested and no consent form is ever loaded or shown. |  |
+| [Disable rate prompts](#disable-rate-prompts) | Disables the in-app rate-us prompts (the SDK's rate-dialog source gate always returns false) and hides the 'Rate us' row in the settings screen. |  |
+| [Strip ad tracking permissions](#strip-ad-tracking-permissions) | Removes the ad identifier permissions (AD_ID and the Ad Services permissions: ad ID, attribution and topics) from the manifest. |  |
+| [Unlock premium](#unlock-premium) | Unlocks premium: forces the PremiumHelper SDK's isPremium check to always return true, which also suppresses banner/interstitial ads and the paywall and relaunch offers through the SDK's own premium paths. |  |
 
-&nbsp;
+</details>
 
-## 🚀 Getting development started
+<details open>
+<summary>📦 WiFi FTP Server&nbsp;&nbsp;•&nbsp;&nbsp;8 patches</summary>
+<br>
 
-To start using this template, follow these steps:
+**🎯 Supported versions:**
 
-1. [Setup](https://github.com/MorpheApp/morphe-documentation/blob/main/docs/morphe-development/README.md) your development environment including adding a GitHub PAT as described [here](https://github.com/MorpheApp/morphe-patcher/blob/main/docs/2_1_setup.md#-prepare-the-environment).
-2. [Create a new repository using this template](https://github.com/new?template_name=morphe-patches-template&template_owner=MorpheApp). Select create a new repository, and **enable 'Include all branches'** 
-3. Enable "Allow GitHub Actions to create and approve pull requests" in your repo Settings > Actions > General > Workflow permissions
-4. Update the [build.gradle.kts](patches/build.gradle.kts) file (Specifically, the 
-   [group of the project](patches/build.gradle.kts#L1), and the [About](patches/build.gradle.kts#L6-L11))
-5. Update the [README.md](README.md) file to be specific of your repo, and update the links in the [issue templates](.github/ISSUE_TEMPLATE).
-6. Choose a name for your patches project. Keep in mind you must use a name that does not 
-   imply authorship by the Morphe open source project. If unsure, then simply name these
-   patches after yourself ("UserXYZ Morphe patches"). See the [NOTICE](NOTICE) for details. 
-7. (Optional): Add `patches-bundle.png` to the project if you want a custom icon to show in
-   Morphe Manager instead of your GitHub profile avatar.
+| 2.4.0 |
+| :---: |
 
-🎉 You are now ready to start creating patches!
+| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+|----------|----------------|-----------|
+| [Disable Crashlytics reporting](#disable-crashlytics-reporting) | Disables Firebase Crashlytics data collection and empties the app's Crashlytics log/exception calls, which otherwise report the server URL and configuration on every start and stop. |  |
+| [Disable ad consent flow](#disable-ad-consent-flow) | Disables the Google UMP consent flow that gates ad loading. The consent info update never runs and ads are treated as always allowed to load. Has no visible effect if 'Remove banner ads' is also enabled. |  |
+| [Disable mDNS service advertisement](#disable-mdns-service-advertisement) | Stops the server from announcing itself as 'WiFiFTP' over mDNS/NSD (_ftp._tcp) on the local network. Direct connections by IP address are unaffected. |  |
+| [Hide Get Pro version button](#hide-get-pro-version-button) | Hides the 'Get Pro version' button on the main screen, which only opens the paid Pro app's store listing. |  |
+| [Material You icon](#material-you-icon) | Replaces the legacy launcher icon with a Material You adaptive icon: white folder and WiFi glyph on the app's blue, with a monochrome layer for themed icons. |  |
+| [Remove Rate this app menu item](#remove-rate-this-app-menu-item) | Removes the 'Rate this app' item, which opens the app's store listing, from the main screen menu. |  |
+| [Remove banner ads](#remove-banner-ads) | Removes the AdMob banner ad from the main screen. The ads SDK is never initialized and the banner view is never created or loaded. |  |
+| [Strip ad tracking permissions and app ID](#strip-ad-tracking-permissions-and-app-id) | Removes the AdMob application ID, the MobileAds initialization provider and the ad identifier permissions (AD_ID and Ad Services) from the manifest. Requires 'Remove banner ads'. |  |
 
-## 🧑‍💻 Dev usage
+</details>
 
-To develop and release your Patches using this template:
-
-- **Make all changes to the `dev` branch.**
-- For local development work build your patches using the gradle task `./gradlew buildAndroid` to generate the mpp file found in `patches/build/libs/patches-*.mpp`. Apply your patches locally using Morphe Desktop tool like any other patch bundle.
-- Always use [Semantic commit](https://kapeli.com/cheat_sheets/Semantic_Commits.docset/Contents/Resources/Documents/index) messages for commits. To keep it simple use only 3 commit message types: 
-  - `feat: Added a new feature`
-  - `fix: Some problem now fixed`
-  - `chore: Random change you do not want in the user facing changelog`
-- Commits of `fix:` and `feat:` will automatically generate new pre-releases and `chore:` will not create a new release.
-- Users can apply your dev branch releases by enabling `pre-release` in Morphe Manager patch sources.
-- When your dev branch is ready, and you want a stable release, merge dev branch to main (do not squash, and only merge).
-- **Always use semantic release (release.yml)**. Do not manually upload or create releases by hand
-  because many files must be updated and release.yml handles everything.
-
-## 🤓 Tips
-- See the [patcher documentation](https://github.com/MorpheApp/morphe-patcher/blob/main/docs/1_patcher_intro.md) for more examples of creating patches and fingerprints.
-- Do not use AI to create new release scripts. The `release.yml` here already handles everything.
-  If you need something custom with your releases then modify the existing `release.yml`
-  and `.releaserc` instead of writing everything new from scratch.
-- Do not manually edit or manually commit any generated files such as: `patches-list.json`,
-  `patches-bundle.json`, `CHANGELOG.md`.  These files will be automatically updated by `release.yml`.
-- Do not force push any semantic release commits as that will break all future releases.
-  If you need to fix a broken release, it's always easiest to create a new release instead of 
-  fixing an existing release.
-
-
-<!-- The patches end tag is intentionally placed here so the first release will clean up 
-     this readme of all developer instructions above. -->
 <!-- PATCHES_END -->
 
 ### 🛠️ Building locally
@@ -88,4 +70,4 @@ See the [Morphe documentation](https://github.com/MorpheApp/morphe-documentation
 
 ## 📜 License
 
-UserXYZ Patches are licensed under the [GNU General Public License v3.0](LICENSE)
+dieroboter Patches are licensed under the [GNU General Public License v3.0](LICENSE)

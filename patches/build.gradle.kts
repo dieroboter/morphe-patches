@@ -1,12 +1,11 @@
-group = "app.template"
+group = "app.dieroboter"
 
 patches {
-    // TODO: Update this section with your project details.
     about {
-        name = "UserXYZ Patches"
-        description = "Patches for apps I like"
-        source = "git@github.com:UserXYZ/morphe-patches.git"
-        author = "Awesome dev"
+        name = "dieroboter Patches"
+        description = "Patches for WiFi FTP Server and GIF Maker"
+        source = "git@github.com:dieroboter/morphe-patches.git"
+        author = "dieroboter"
         contact = "na"
         website = "na"
         license = "GPLv3"
