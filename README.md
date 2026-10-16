@@ -2,28 +2,32 @@
 
 Personal patch bundle for Morphe: patches for WiFi FTP Server and GIF Maker.
 
-## ❓ About
+## About
 
 Patches for apps I use. Currently WiFi FTP Server (8 patches) and GIF Maker (7 patches): ad removal, premium unlock, and telemetry/consent removal.
+
+## AI disclaimer
+
+The patches in this repository were written with AI assistance (Muse, by Meta). Each patch was verified before release by applying the built bundle to the target apps with Morphe Desktop and inspecting the patched output; not every patch has been runtime-tested on a device. Review the source before use. These patches are provided as-is, without warranty of any kind.
 
 ### How to use these patches
 
 Click here to add these patches to Morphe: https://morphe.software/add-source?github=dieroboter/morphe-patches
 
-## 🩹 Patches list
+## Patches list
 
 <!-- PATCHES_START EXPANDED -->
 > **[v1.0.0](https://github.com/dieroboter/morphe-patches/releases/tag/v1.0.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;15 patches total
 <details open>
-<summary>📦 GIF Maker&nbsp;&nbsp;•&nbsp;&nbsp;7 patches</summary>
+<summary>GIF Maker&nbsp;&nbsp;•&nbsp;&nbsp;7 patches</summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:**
 
 | 2.0.8 |
 | :---: |
 
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+| Patch | Description | Options |
 |----------|----------------|-----------|
 | [Disable AppMetrica activation](#disable-appmetrica-activation) | Makes AppMetrica.activateReporter a no-op, so the AppMetrica reporter the Yandex mediation glue sets up is never activated and its events are dropped. |  |
 | [Disable Singular telemetry](#disable-singular-telemetry) | Prevents the Singular analytics SDK from initializing: its only init call site (the PremiumHelper Singular manager coroutine) returns immediately. |  |
@@ -36,15 +40,15 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 </details>
 
 <details open>
-<summary>📦 WiFi FTP Server&nbsp;&nbsp;•&nbsp;&nbsp;8 patches</summary>
+<summary>WiFi FTP Server&nbsp;&nbsp;•&nbsp;&nbsp;8 patches</summary>
 <br>
 
-**🎯 Supported versions:**
+**Supported versions:**
 
 | 2.4.0 |
 | :---: |
 
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
+| Patch | Description | Options |
 |----------|----------------|-----------|
 | [Disable Crashlytics reporting](#disable-crashlytics-reporting) | Disables Firebase Crashlytics data collection and empties the app's Crashlytics log/exception calls, which otherwise report the server URL and configuration on every start and stop. |  |
 | [Disable ad consent flow](#disable-ad-consent-flow) | Disables the Google UMP consent flow that gates ad loading. The consent info update never runs and ads are treated as always allowed to load. Has no visible effect if 'Remove banner ads' is also enabled. |  |
@@ -59,7 +63,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 
 <!-- PATCHES_END -->
 
-### 🛠️ Building locally
+### Building locally
 
 - Run `./gradlew buildAndroid`
 - The built patches .mpp file is found in `patches/build/libs/patches-*.mpp`
@@ -68,6 +72,6 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 
 See the [Morphe documentation](https://github.com/MorpheApp/morphe-documentation) for more information.
 
-## 📜 License
+## License
 
 dieroboter Patches are licensed under the [GNU General Public License v3.0](LICENSE)
