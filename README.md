@@ -1,16 +1,14 @@
-# 👋🧩 Morphe Patches template
+# dieroboter Patches
 
-Template repository for Morphe Patches.
+Personal patch bundle for Morphe: patches for WiFi FTP Server and GIF Maker.
 
 ## ❓ About
 
-Patches for apps I like.
-
-<!-- TODO: Update this about section with a brief introduction/summary about this repo and what it offers. -->
+Patches for apps I use. Currently WiFi FTP Server (8 patches) and GIF Maker (7 patches): ad removal, premium unlock, and telemetry/consent removal.
 
 ### How to use these patches
 
-Click here to add these patches to Morphe: https://morphe.software/add-source?github=xyz-user/xyz-patches
+Click here to add these patches to Morphe: https://morphe.software/add-source?github=dieroboter/morphe-patches
 
 ## 🩹 Patches list
 
@@ -88,4 +86,4 @@ See the [Morphe documentation](https://github.com/MorpheApp/morphe-documentation
 
 ## 📜 License
 
-UserXYZ Patches are licensed under the [GNU General Public License v3.0](LICENSE)
+dieroboter Patches are licensed under the [GNU General Public License v3.0](LICENSE)
