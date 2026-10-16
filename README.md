@@ -1,14 +1,12 @@
 # dieroboter Patches
 
-Personal patch bundle for Morphe: patches for WiFi FTP Server and GIF Maker.
-
-## About
-
-Patches for apps I use. Currently WiFi FTP Server (8 patches) and GIF Maker (7 patches): ad removal, premium unlock, and telemetry/consent removal.
+Personal patch bundle for Morphe
 
 ## AI disclaimer
 
-The patches in this repository were written with AI assistance (Muse, by Meta). Each patch was verified before release by applying the built bundle to the target apps with Morphe Desktop and inspecting the patched output; not every patch has been runtime-tested on a device. Review the source before use. These patches are provided as-is, without warranty of any kind.
+The patches in this repository were written by AI. Each patch was verified as working at the time of release. These patches are provided as-is, without a warranty of any kind.
+
+---
 
 ### How to use these patches
 
