@@ -1,3 +1,9 @@
+## [1.2.1-dev.1](https://github.com/dieroboter/morphe-patches/compare/v1.2.0...v1.2.1-dev.1) (2026-10-17)
+
+### Bug Fixes
+
+* Leave the Flappy Bird app version unchanged ([56d8b97](https://github.com/dieroboter/morphe-patches/commit/56d8b9707e20712d8732ec2b629710ce69f13c33))
+
 ## [1.2.0](https://github.com/dieroboter/morphe-patches/compare/v1.1.0...v1.2.0) (2026-10-17)
 
 ### New Features
