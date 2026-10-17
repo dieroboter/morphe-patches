@@ -166,7 +166,7 @@ private const val ONCREATE_WINDOW_BLOCK = """
 /**
  * Computes the adaptive layout values from the display size and stores them
  * in GameActivity's static fields. World height H = 288 * screenHeight /
- * screenWidth, clamped to a minimum of 512 (the stock layout height). Runs at
+ * screenWidth, clamped to a minimum of 384 (the 4:3 layout height). Runs at
  * the top of GameActivity.a(), before the camera and resolution policy are
  * built from adaptiveHeight; v0 and v2 are scratch (the stock method writes
  * both before reading them), v1 holds H.
@@ -178,7 +178,12 @@ private const val ONCREATE_WINDOW_BLOCK = """
  *   HalfMinusK = H/2-K (center-anchored positions),
  *   PipeMin = 180 + (H-512)*28/128, PipeMax = 360 + (H-512)*56/128
  * (the pipe gap random range; its endpoints were hand-tuned in both builds,
- * so it is interpolated rather than anchored).
+ * so it is interpolated rather than anchored). Below H=512 the interpolated
+ * PipeMax is additionally capped at H-152: the linear value's margin above
+ * the ground top (H-112) would otherwise shrink past the stock 40 units and
+ * cross the ground line near H=441, letting pipe gaps spawn inside the
+ * ground. The cap equals the linear value at H=512 and never binds at or
+ * above it, so both known layouts stay exact.
  */
 private const val ADAPTIVE_COMPUTE_BLOCK = """
     invoke-virtual {p0}, Lcom/dotgears/GameActivity;->getResources()Landroid/content/res/Resources;
@@ -192,10 +197,10 @@ private const val ADAPTIVE_COMPUTE_BLOCK = """
     div-float/2addr v1, v0
     const/high16 v0, 0x43900000
     mul-float/2addr v1, v0
-    const/high16 v0, 0x44000000
+    const/high16 v0, 0x43c00000
     cmpg-float v0, v1, v0
     if-gez v0, :flappy_adaptive_clamped
-    const/high16 v1, 0x44000000
+    const/high16 v1, 0x43c00000
     :flappy_adaptive_clamped
     sput v1, Lcom/dotgears/GameActivity;->adaptiveHeight:F
     float-to-int v0, v1
@@ -256,6 +261,13 @@ private const val ADAPTIVE_COMPUTE_BLOCK = """
     mul-float/2addr v0, v2
     const/high16 v2, 0x43b40000
     add-float/2addr v0, v2
+    const/high16 v2, 0x43180000
+    sub-float v2, v1, v2
+    cmpg-float v2, v0, v2
+    if-lez v2, :flappy_adaptive_pipemax_ok
+    const/high16 v2, 0x43180000
+    sub-float v0, v1, v2
+    :flappy_adaptive_pipemax_ok
     float-to-int v0, v0
     sput v0, Lcom/dotgears/GameActivity;->adaptivePipeMax:I
 """
@@ -294,12 +306,13 @@ private const val SETUP_BLOCK = """
  * 640-unit world to the actual display:
  *
  * - The world height is computed at startup from the screen size (288 units
- *   wide, height scaled to the display, never below the stock 512), and the
- *   camera and resolution policy are built from it. Every layout constant
- *   the port baked for 640 becomes a read of a derived value of that height
- *   (see ADAPTIVE_COMPUTE_BLOCK), so the game fills any screen at or taller
- *   than 16:9 with no letterbox bars, while a 20:9 screen gets exactly the
- *   port's 640 layout and a 16:9 screen gets exactly the stock layout.
+ *   wide, height scaled to the display, never below 384, the 4:3 height),
+ *   and the camera and resolution policy are built from it. Every layout
+ *   constant the port baked for 640 becomes a read of a derived value of
+ *   that height (see ADAPTIVE_COMPUTE_BLOCK), so the game adapts to any
+ *   screen from 4:3 up through tall phones with no letterbox bars, while a
+ *   20:9 screen gets exactly the port's 640 layout and a 16:9 screen gets
+ *   exactly the stock layout.
  * - The pipe/ground elements stop being positioned from atlas offsets and
  *   get the fixed F/G flag setup; a score-overlay tap block and per-frame
  *   element updates tied to the old layout are removed, and a scene trigger
@@ -317,12 +330,12 @@ private const val SETUP_BLOCK = """
 val widescreenPatch = bytecodePatch(
     name = "Adapt to modern displays",
     description = "Adapts the game world to the display: the world height is computed at " +
-        "startup from the screen size (288 units wide, height scaled to the screen and " +
-        "never below the original 512), and the scene, pipe and texture geometry follows " +
-        "it, so the game fills any screen 16:9 or taller without bars. Also adds " +
-        "display-cutout and immersive window handling (fixes the black bar on tall " +
-        "screens) and moves the per-frame texture setup to a one-time init call (the " +
-        "port's flicker fix).",
+        "startup from the screen size (288 units wide, height scaled to the screen, " +
+        "from a minimum of 384), and the scene, pipe and texture geometry follows it, " +
+        "so the game adapts to any screen from 4:3 up through tall phones without " +
+        "bars. Also adds display-cutout and immersive window handling (fixes the " +
+        "black bar on tall screens) and moves the per-frame texture setup to a " +
+        "one-time init call (the port's flicker fix).",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_FLAPPY_BIRD)
