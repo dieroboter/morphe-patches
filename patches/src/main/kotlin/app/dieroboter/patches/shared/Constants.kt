@@ -53,4 +53,15 @@ object Constants {
             )
         )
     )
+
+    val COMPATIBILITY_GEOMETRY_DASH_WORLD = Compatibility(
+        name = "Geometry Dash World",
+        packageName = "com.robtopx.geometrydashworld",
+        apkFileType = ApkFileType.APKM,
+        targets = listOf(
+            AppTarget(
+                version = "2.2.147"
+            )
+        )
+    )
 }
