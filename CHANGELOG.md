@@ -1,3 +1,9 @@
+## [1.3.0-dev.1](https://github.com/dieroboter/morphe-patches/compare/v1.2.1...v1.3.0-dev.1) (2026-10-17)
+
+### New Features
+
+* Make Flappy Bird display patch adapt to any screen height ([0f34079](https://github.com/dieroboter/morphe-patches/commit/0f3407915d3a5a8571caeb0f150fad145fbdd828))
+
 ## [1.2.1](https://github.com/dieroboter/morphe-patches/compare/v1.2.0...v1.2.1) (2026-10-17)
 
 ### Bug Fixes
