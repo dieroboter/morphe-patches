@@ -64,4 +64,15 @@ object Constants {
             )
         )
     )
+
+    val COMPATIBILITY_FLAPPY_BIRD = Compatibility(
+        name = "Flappy Bird",
+        packageName = "com.dotgears.flappybird",
+        apkFileType = ApkFileType.APK,
+        targets = listOf(
+            AppTarget(
+                version = "1.3"
+            )
+        )
+    )
 }
