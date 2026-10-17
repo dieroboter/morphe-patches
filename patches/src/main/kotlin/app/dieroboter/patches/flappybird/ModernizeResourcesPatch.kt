@@ -29,8 +29,10 @@ private val LOCALE_DIRS = listOf(
  * - Manifest: the game activity becomes the launcher (the splash activity and
  *   the AdMob activity are removed), the INTERNET and ACCESS_NETWORK_STATE
  *   permissions go away, the activity gains the configChanges / exported /
- *   display-cutout attributes of the port, and the version is set to the
- *   port's 1.12 (versionCode 13).
+ *   display-cutout attributes of the port, and the SDK levels are raised to
+ *   the port's min 14 / target 34. The app's version is NOT changed (the
+ *   port build stamped its own 1.12 / versionCode 13; the patches leave the
+ *   stock 1.3 / versionCode 4 in place).
  * - An adaptive launcher icon (foreground/monochrome drawables, mipmap
  *   anydpi XML, teal background color) replaces the legacy icon reference.
  * - AppTheme gains the fullscreen + shortEdges cutout items.
@@ -47,9 +49,9 @@ val modernizeResourcesPatch = resourcePatch(
         "AdMob activity, drops the INTERNET and ACCESS_NETWORK_STATE permissions, raises " +
         "the SDK levels to the port's min 14 / target 34 (current Android refuses to " +
         "install the stock target 15), adds an adaptive launcher icon and display-cutout " +
-        "theme settings, removes the dead Google sign-in resources, replaces the sound " +
-        "effects with the port's re-encoded versions, and sets the version to 1.12 " +
-        "(versionCode 13).",
+        "theme settings, removes the dead Google sign-in resources, and replaces the " +
+        "sound effects with the port's re-encoded versions. The app's version is " +
+        "left untouched.",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_FLAPPY_BIRD)
@@ -57,8 +59,9 @@ val modernizeResourcesPatch = resourcePatch(
     execute {
         document("AndroidManifest.xml").use { document ->
             val manifest = document.documentElement
-            manifest.setAttribute("android:versionCode", "13")
-            manifest.setAttribute("android:versionName", "1.12")
+            // The app's version is deliberately left untouched: the patched
+            // app keeps the stock 1.3 (versionCode 4) instead of being
+            // stamped with the port build's 1.12 (versionCode 13).
 
             // The port raised the SDK levels (stock: min 8 / target 15;
             // port: min 14 / target 34). The target bump is also what lets
