@@ -53,6 +53,24 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 </details>
 
 <details open>
+<summary>Geometry Dash World&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
+<br>
+
+**Supported versions:**
+
+| 2.2.147 |
+| :---: |
+
+| Patch | Description | Options |
+|----------|----------------|-----------|
+| [Disable AppMetrica activation](#disable-appmetrica-activation) | Makes AppMetrica.activateReporter a no-op, so the AppMetrica reporter the Yandex mediation glue sets up is never activated and its events are dropped. |  |
+| [Disable ad consent flow](#disable-ad-consent-flow) | Flips the AppLovin terms-and-privacy flow in LiteRobTopActivity.setupGAM from enabled to disabled, so the first-launch ad consent dialog never appears. |  |
+| [Disable banner and interstitial ads](#disable-banner-and-interstitial-ads) | No-ops the native bridge methods that show banner and interstitial ads (LiteRobTopActivity._enableBanner / _showInterstitial) and makes _hasCachedInterstitial report false. Rewarded video ads are left working. |  |
+| [Strip ad tracking permissions](#strip-ad-tracking-permissions) | Removes the ad identifier permissions (AD_ID and the Ad Services permissions: ad ID, attribution and topics) from the manifest. |  |
+
+</details>
+
+<details open>
 <summary>GIF Maker&nbsp;&nbsp;•&nbsp;&nbsp;7 patches</summary>
 <br>
 
@@ -70,24 +88,6 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 | [Disable rate prompts](#disable-rate-prompts) | Disables the in-app rate-us prompts (the SDK's rate-dialog source gate always returns false) and hides the 'Rate us' row in the settings screen. |  |
 | [Strip ad tracking permissions](#strip-ad-tracking-permissions) | Removes the ad identifier permissions (AD_ID and the Ad Services permissions: ad ID, attribution and topics) from the manifest. |  |
 | [Unlock premium](#unlock-premium) | Unlocks premium: forces the PremiumHelper SDK's isPremium check to always return true, which also suppresses banner/interstitial ads and the paywall and relaunch offers through the SDK's own premium paths. |  |
-
-</details>
-
-<details open>
-<summary>Geometry Dash World&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
-<br>
-
-**Supported versions:**
-
-| 2.2.147 |
-| :---: |
-
-| Patch | Description | Options |
-|----------|----------------|-----------|
-| [Disable AppMetrica activation](#disable-appmetrica-activation) | Makes AppMetrica.activateReporter a no-op, so the AppMetrica reporter the Yandex mediation glue sets up is never activated and its events are dropped. |  |
-| [Disable ad consent flow](#disable-ad-consent-flow) | Flips the AppLovin terms-and-privacy flow in LiteRobTopActivity.setupGAM from enabled to disabled, so the first-launch ad consent dialog never appears. |  |
-| [Disable banner and interstitial ads](#disable-banner-and-interstitial-ads) | No-ops the native bridge methods that show banner and interstitial ads (LiteRobTopActivity._enableBanner / _showInterstitial) and makes _hasCachedInterstitial report false. Rewarded video ads are left working. |  |
-| [Strip ad tracking permissions](#strip-ad-tracking-permissions) | Removes the ad identifier permissions (AD_ID and the Ad Services permissions: ad ID, attribution and topics) from the manifest. |  |
 
 </details>
 
