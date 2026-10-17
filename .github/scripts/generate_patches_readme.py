@@ -150,8 +150,8 @@ def build_content(expanded=False):
         f"{total} patches total"
     ]
 
-    # One spoiler per app, in the order they appear in the JSON
-    for pkg, entry in by_pkg.items():
+    # One spoiler per app, sorted alphabetically by display name
+    for pkg, entry in sorted(by_pkg.items(), key=lambda kv: kv[1]["name"].lower()):
         patches = list(entry["patches"].values())
         label   = entry["name"]
         lines.append(spoiler(label, len(patches), entry["targets"], patches_table(patches), expanded))
