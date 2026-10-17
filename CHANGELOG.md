@@ -1,3 +1,9 @@
+## [1.1.0-dev.2](https://github.com/dieroboter/morphe-patches/compare/v1.1.0-dev.1...v1.1.0-dev.2) (2026-10-17)
+
+### ✨ New Features
+
+* Add Geometry Dash SubZero patches ([dba1dbe](https://github.com/dieroboter/morphe-patches/commit/dba1dbe683141a316648d855e3e01a7317ca71d8))
+
 ## [1.1.0-dev.1](https://github.com/dieroboter/morphe-patches/compare/v1.0.0...v1.1.0-dev.1) (2026-10-16)
 
 ### ✨ New Features

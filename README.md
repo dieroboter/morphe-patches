@@ -15,9 +15,27 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 ## Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.1.0-dev.1](https://github.com/dieroboter/morphe-patches/releases/tag/v1.1.0-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;19 patches total
+> **[v1.1.0-dev.2](https://github.com/dieroboter/morphe-patches/releases/tag/v1.1.0-dev.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;23 patches total
 <details open>
 <summary>Geometry Dash Meltdown&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
+<br>
+
+**Supported versions:**
+
+| 2.2.147 |
+| :---: |
+
+| Patch | Description | Options |
+|----------|----------------|-----------|
+| [Disable AppMetrica activation](#disable-appmetrica-activation) | Makes AppMetrica.activateReporter a no-op, so the AppMetrica reporter the Yandex mediation glue sets up is never activated and its events are dropped. |  |
+| [Disable ad consent flow](#disable-ad-consent-flow) | Flips the AppLovin terms-and-privacy flow in LiteRobTopActivity.setupGAM from enabled to disabled, so the first-launch ad consent dialog never appears. |  |
+| [Disable banner and interstitial ads](#disable-banner-and-interstitial-ads) | No-ops the native bridge methods that show banner and interstitial ads (LiteRobTopActivity._enableBanner / _showInterstitial) and makes _hasCachedInterstitial report false. Rewarded video ads are left working. |  |
+| [Strip ad tracking permissions](#strip-ad-tracking-permissions) | Removes the ad identifier permissions (AD_ID and the Ad Services permissions: ad ID, attribution and topics) from the manifest. |  |
+
+</details>
+
+<details open>
+<summary>Geometry Dash SubZero&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
 
 **Supported versions:**
