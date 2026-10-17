@@ -31,4 +31,37 @@ object Constants {
             )
         )
     )
+
+    val COMPATIBILITY_GEOMETRY_DASH_MELTDOWN = Compatibility(
+        name = "Geometry Dash Meltdown",
+        packageName = "com.robtopx.geometrydashmeltdown",
+        apkFileType = ApkFileType.APKM,
+        targets = listOf(
+            AppTarget(
+                version = "2.2.147"
+            )
+        )
+    )
+
+    val COMPATIBILITY_GEOMETRY_DASH_SUBZERO = Compatibility(
+        name = "Geometry Dash SubZero",
+        packageName = "com.robtopx.geometrydashsubzero",
+        apkFileType = ApkFileType.APKM,
+        targets = listOf(
+            AppTarget(
+                version = "2.2.147"
+            )
+        )
+    )
+
+    val COMPATIBILITY_GEOMETRY_DASH_WORLD = Compatibility(
+        name = "Geometry Dash World",
+        packageName = "com.robtopx.geometrydashworld",
+        apkFileType = ApkFileType.APKM,
+        targets = listOf(
+            AppTarget(
+                version = "2.2.147"
+            )
+        )
+    )
 }
