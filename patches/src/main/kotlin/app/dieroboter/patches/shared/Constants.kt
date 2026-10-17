@@ -42,4 +42,15 @@ object Constants {
             )
         )
     )
+
+    val COMPATIBILITY_GEOMETRY_DASH_SUBZERO = Compatibility(
+        name = "Geometry Dash SubZero",
+        packageName = "com.robtopx.geometrydashsubzero",
+        apkFileType = ApkFileType.APKM,
+        targets = listOf(
+            AppTarget(
+                version = "2.2.147"
+            )
+        )
+    )
 }
