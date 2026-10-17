@@ -1,3 +1,11 @@
+## [1.1.0](https://github.com/dieroboter/morphe-patches/compare/v1.0.0...v1.1.0) (2026-10-17)
+
+### New Features
+
+* Add Geometry Dash Meltdown patches ([8a3585e](https://github.com/dieroboter/morphe-patches/commit/8a3585e59354717ca6d6f71340053ec12188bf1a))
+* Add Geometry Dash SubZero patches ([dba1dbe](https://github.com/dieroboter/morphe-patches/commit/dba1dbe683141a316648d855e3e01a7317ca71d8))
+* Add Geometry Dash World patches ([18c32d7](https://github.com/dieroboter/morphe-patches/commit/18c32d795ba68efbc67f0f80ca2b0ec9cd413bad))
+
 ## [1.1.0-dev.3](https://github.com/dieroboter/morphe-patches/compare/v1.1.0-dev.2...v1.1.0-dev.3) (2026-10-17)
 
 ### New Features
