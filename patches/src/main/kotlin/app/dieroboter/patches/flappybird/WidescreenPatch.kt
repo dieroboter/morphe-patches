@@ -7,6 +7,7 @@ import app.morphe.patcher.extensions.InstructionExtensions.removeInstructions
 import app.morphe.patcher.extensions.InstructionExtensions.replaceInstruction
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.bytecodePatch
+import app.morphe.patcher.util.proxy.mutableTypes.MutableField
 import app.morphe.patcher.util.proxy.mutableTypes.MutableMethod
 import com.android.tools.smali.dexlib2.AccessFlags
 import com.android.tools.smali.dexlib2.Opcode
@@ -16,23 +17,86 @@ import com.android.tools.smali.dexlib2.iface.instruction.FiveRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.NarrowLiteralInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.OneRegisterInstruction
 import com.android.tools.smali.dexlib2.iface.instruction.TwoRegisterInstruction
+import com.android.tools.smali.dexlib2.immutable.ImmutableField
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethod
 import com.android.tools.smali.dexlib2.immutable.ImmutableMethodImplementation
 import com.android.tools.smali.dexlib2.immutable.reference.ImmutableFieldReference
+import com.android.tools.smali.dexlib2.immutable.value.ImmutableEncodedValue
+import com.android.tools.smali.dexlib2.immutable.value.ImmutableFloatEncodedValue
+import com.android.tools.smali.dexlib2.immutable.value.ImmutableIntEncodedValue
 import app.dieroboter.patches.shared.Constants.COMPATIBILITY_FLAPPY_BIRD
 
-private fun MutableMethod.replaceConst16Literal(old: Int, new: Int, count: Int = 1) {
-    requireLiteralIndices(old, Opcode.CONST_16, count).forEach { index ->
+// Adaptive layout values, added to GameActivity as public static fields by
+// this patch and read by the edited methods via sget. They are computed from
+// the real display size in GameActivity.a() (see ADAPTIVE_COMPUTE_BLOCK) and
+// carry the stock (512) layout as their initial values, so any read before
+// that computation still yields the original layout.
+private const val F_HEIGHT = "Lcom/dotgears/GameActivity;->adaptiveHeight:F"
+private const val F_HEIGHT_INT = "Lcom/dotgears/GameActivity;->adaptiveHeightInt:I"
+private const val F_MINUS_8 = "Lcom/dotgears/GameActivity;->adaptiveHeightMinus8:I"
+private const val F_MINUS_112 = "Lcom/dotgears/GameActivity;->adaptiveHeightMinus112:I"
+private const val F_MINUS_172 = "Lcom/dotgears/GameActivity;->adaptiveHeightMinus172:I"
+private const val F_HALF_MINUS_10 = "Lcom/dotgears/GameActivity;->adaptiveHalfMinus10:I"
+private const val F_HALF_MINUS_36 = "Lcom/dotgears/GameActivity;->adaptiveHalfMinus36:I"
+private const val F_HALF_MINUS_106 = "Lcom/dotgears/GameActivity;->adaptiveHalfMinus106:I"
+private const val F_HALF_MINUS_110 = "Lcom/dotgears/GameActivity;->adaptiveHalfMinus110:I"
+private const val F_HALF_MINUS_126 = "Lcom/dotgears/GameActivity;->adaptiveHalfMinus126:I"
+private const val F_PIPE_MIN = "Lcom/dotgears/GameActivity;->adaptivePipeMin:I"
+private const val F_PIPE_MAX = "Lcom/dotgears/GameActivity;->adaptivePipeMax:I"
+
+private val ADAPTIVE_FIELDS: List<Triple<String, String, ImmutableEncodedValue>> = listOf(
+    Triple("adaptiveHeight", "F", ImmutableFloatEncodedValue(512.0f)),
+    Triple("adaptiveHeightInt", "I", ImmutableIntEncodedValue(512)),
+    Triple("adaptiveHeightMinus8", "I", ImmutableIntEncodedValue(504)),
+    Triple("adaptiveHeightMinus112", "I", ImmutableIntEncodedValue(400)),
+    Triple("adaptiveHeightMinus172", "I", ImmutableIntEncodedValue(340)),
+    Triple("adaptiveHalfMinus10", "I", ImmutableIntEncodedValue(246)),
+    Triple("adaptiveHalfMinus36", "I", ImmutableIntEncodedValue(220)),
+    Triple("adaptiveHalfMinus106", "I", ImmutableIntEncodedValue(150)),
+    Triple("adaptiveHalfMinus110", "I", ImmutableIntEncodedValue(146)),
+    Triple("adaptiveHalfMinus126", "I", ImmutableIntEncodedValue(130)),
+    Triple("adaptivePipeMin", "I", ImmutableIntEncodedValue(180)),
+    Triple("adaptivePipeMax", "I", ImmutableIntEncodedValue(360)),
+)
+
+/** Replaces const/16 loads of [literal] with sget of [fieldRef] (same register). */
+private fun MutableMethod.replaceConst16WithField(literal: Int, fieldRef: String, count: Int = 1) {
+    requireLiteralIndices(literal, Opcode.CONST_16, count).forEach { index ->
         val register = getInstruction<OneRegisterInstruction>(index).registerA
-        replaceInstruction(index, "const/16 v$register, $new")
+        replaceInstruction(index, "sget v$register, $fieldRef")
     }
 }
 
-private fun MutableMethod.replaceRsubIntLiteral(old: Int, new: Int, count: Int = 1) {
-    requireLiteralIndices(old, Opcode.RSUB_INT, count).forEach { index ->
+/**
+ * Replaces rsub-int loads of [literal] (vA = literal - vB) with the field
+ * equivalent: sget vS, fieldRef; sub-int vA, vS, vB. At every rsub site in
+ * this codebase the destination register equals the source register, so the
+ * field value cannot be loaded into vA first (it would destroy vB); it goes
+ * through [scratch] instead. Each call site passes a register that a
+ * forward-liveness check on the stock method shows is rewritten before any
+ * read after the site. Re-searches after each replacement because the
+ * inserted instruction shifts later indices.
+ */
+private fun MutableMethod.replaceRsubWithField(literal: Int, fieldRef: String, scratch: Int, count: Int = 1) {
+    repeat(count) {
+        val index = literalIndices(literal, Opcode.RSUB_INT).firstOrNull()
+            ?: throw PatchException("rsub-int $literal not found in $definingClass->$name")
         val insn = getInstruction<TwoRegisterInstruction>(index)
-        replaceInstruction(index, "rsub-int v${insn.registerA}, v${insn.registerB}, $new")
+        replaceInstruction(index, "sget v$scratch, $fieldRef")
+        addInstructions(index + 1, "sub-int v${insn.registerA}, v$scratch, v${insn.registerB}")
     }
+}
+
+/**
+ * Replaces an add-int/lit16 of [literal] (vA = vB + literal) with the field
+ * equivalent through [scratch] (same dest == source situation as
+ * [replaceRsubWithField]): sget vS, fieldRef; add-int vA, vS, vB.
+ */
+private fun MutableMethod.replaceAddLit16WithField(literal: Int, fieldRef: String, scratch: Int) {
+    val index = requireLiteralIndices(literal, Opcode.ADD_INT_LIT16).single()
+    val insn = getInstruction<TwoRegisterInstruction>(index)
+    replaceInstruction(index, "sget v$scratch, $fieldRef")
+    addInstructions(index + 1, "add-int v${insn.registerA}, v$scratch, v${insn.registerB}")
 }
 
 /** Deletes the [iget P; iget f.d; add-int/2addr; add-int/lit8] offset block (port: removed). */
@@ -99,6 +163,103 @@ private const val ONCREATE_WINDOW_BLOCK = """
     invoke-virtual {v1, v2}, Landroid/view/View;->setSystemUiVisibility(I)V
 """
 
+/**
+ * Computes the adaptive layout values from the display size and stores them
+ * in GameActivity's static fields. World height H = 288 * screenHeight /
+ * screenWidth, clamped to a minimum of 512 (the stock layout height). Runs at
+ * the top of GameActivity.a(), before the camera and resolution policy are
+ * built from adaptiveHeight; v0 and v2 are scratch (the stock method writes
+ * both before reading them), v1 holds H.
+ *
+ * Every derived value is the linear function of H that passes through both
+ * known layouts (stock at H=512, the port at H=640), so H=512 reproduces
+ * stock exactly and H=640 reproduces the port exactly:
+ *   Minus8 = H-8, Minus112 = H-112 (ground top), Minus172 = H-172,
+ *   HalfMinusK = H/2-K (center-anchored positions),
+ *   PipeMin = 180 + (H-512)*28/128, PipeMax = 360 + (H-512)*56/128
+ * (the pipe gap random range; its endpoints were hand-tuned in both builds,
+ * so it is interpolated rather than anchored).
+ */
+private const val ADAPTIVE_COMPUTE_BLOCK = """
+    invoke-virtual {p0}, Lcom/dotgears/GameActivity;->getResources()Landroid/content/res/Resources;
+    move-result-object v0
+    invoke-virtual {v0}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
+    move-result-object v0
+    iget v1, v0, Landroid/util/DisplayMetrics;->heightPixels:I
+    int-to-float v1, v1
+    iget v0, v0, Landroid/util/DisplayMetrics;->widthPixels:I
+    int-to-float v0, v0
+    div-float/2addr v1, v0
+    const/high16 v0, 0x43900000
+    mul-float/2addr v1, v0
+    const/high16 v0, 0x44000000
+    cmpg-float v0, v1, v0
+    if-gez v0, :flappy_adaptive_clamped
+    const/high16 v1, 0x44000000
+    :flappy_adaptive_clamped
+    sput v1, Lcom/dotgears/GameActivity;->adaptiveHeight:F
+    float-to-int v0, v1
+    sput v0, Lcom/dotgears/GameActivity;->adaptiveHeightInt:I
+    const/high16 v0, 0x41000000
+    sub-float v0, v1, v0
+    float-to-int v0, v0
+    sput v0, Lcom/dotgears/GameActivity;->adaptiveHeightMinus8:I
+    const/high16 v0, 0x42e00000
+    sub-float v0, v1, v0
+    float-to-int v0, v0
+    sput v0, Lcom/dotgears/GameActivity;->adaptiveHeightMinus112:I
+    const/high16 v0, 0x432c0000
+    sub-float v0, v1, v0
+    float-to-int v0, v0
+    sput v0, Lcom/dotgears/GameActivity;->adaptiveHeightMinus172:I
+    const/high16 v0, 0x3f000000
+    mul-float v0, v1, v0
+    const/high16 v2, 0x41200000
+    sub-float/2addr v0, v2
+    float-to-int v0, v0
+    sput v0, Lcom/dotgears/GameActivity;->adaptiveHalfMinus10:I
+    const/high16 v0, 0x3f000000
+    mul-float v0, v1, v0
+    const/high16 v2, 0x42100000
+    sub-float/2addr v0, v2
+    float-to-int v0, v0
+    sput v0, Lcom/dotgears/GameActivity;->adaptiveHalfMinus36:I
+    const/high16 v0, 0x3f000000
+    mul-float v0, v1, v0
+    const/high16 v2, 0x42d40000
+    sub-float/2addr v0, v2
+    float-to-int v0, v0
+    sput v0, Lcom/dotgears/GameActivity;->adaptiveHalfMinus106:I
+    const/high16 v0, 0x3f000000
+    mul-float v0, v1, v0
+    const/high16 v2, 0x42dc0000
+    sub-float/2addr v0, v2
+    float-to-int v0, v0
+    sput v0, Lcom/dotgears/GameActivity;->adaptiveHalfMinus110:I
+    const/high16 v0, 0x3f000000
+    mul-float v0, v1, v0
+    const/high16 v2, 0x42fc0000
+    sub-float/2addr v0, v2
+    float-to-int v0, v0
+    sput v0, Lcom/dotgears/GameActivity;->adaptiveHalfMinus126:I
+    const/high16 v0, 0x44000000
+    sub-float v0, v1, v0
+    const/high16 v2, 0x3e600000
+    mul-float/2addr v0, v2
+    const/high16 v2, 0x43340000
+    add-float/2addr v0, v2
+    float-to-int v0, v0
+    sput v0, Lcom/dotgears/GameActivity;->adaptivePipeMin:I
+    const/high16 v0, 0x44000000
+    sub-float v0, v1, v0
+    const/high16 v2, 0x3ee00000
+    mul-float/2addr v0, v2
+    const/high16 v2, 0x43b40000
+    add-float/2addr v0, v2
+    float-to-int v0, v0
+    sput v0, Lcom/dotgears/GameActivity;->adaptivePipeMax:I
+"""
+
 private const val SCENE_HEAD_BLOCK = """
     iget v5, v0, Lcom/dotgears/i;->d:F
     iget v6, v0, Lcom/dotgears/i;->e:F
@@ -107,7 +268,7 @@ private const val SCENE_HEAD_BLOCK = """
     const/4 v1, 0x0
     const/4 v2, 0x0
     const/16 v3, 0x120
-    const/16 v4, 0x280
+    sget v4, Lcom/dotgears/GameActivity;->adaptiveHeightInt:I
     move-object v0, p0
     invoke-virtual/range {v0 .. v9}, Lcom/dotgears/flappy/c;->a(IIIIFFFFF)V
     const/4 v8, 0x0
@@ -129,51 +290,84 @@ private const val SETUP_BLOCK = """
 """
 
 /**
- * The display adaptation of the 64-bit port:
+ * The display adaptation of the 64-bit port, generalized from a fixed
+ * 640-unit world to the actual display:
  *
- * - The game world widens from 512 to 640 units (engine camera width and the
- *   cascade of +64/+128 geometry constants across the scene, bird, pipe and
- *   texture classes), with the scene's background call switched to the
- *   region-based overload using the element's own frame.
- * - The pipe/ground elements stop being positioned from atlas offsets and get
- *   the fixed F/G flag setup; a score-overlay tap block and per-frame element
- *   updates tied to the old layout are removed, and a scene trigger is
- *   re-gated on the port's state flag.
+ * - The world height is computed at startup from the screen size (288 units
+ *   wide, height scaled to the display, never below the stock 512), and the
+ *   camera and resolution policy are built from it. Every layout constant
+ *   the port baked for 640 becomes a read of a derived value of that height
+ *   (see ADAPTIVE_COMPUTE_BLOCK), so the game fills any screen at or taller
+ *   than 16:9 with no letterbox bars, while a 20:9 screen gets exactly the
+ *   port's 640 layout and a 16:9 screen gets exactly the stock layout.
+ * - The pipe/ground elements stop being positioned from atlas offsets and
+ *   get the fixed F/G flag setup; a score-overlay tap block and per-frame
+ *   element updates tied to the old layout are removed, and a scene trigger
+ *   is re-gated on the port's state flag.
  * - GameActivity.onCreate gains the port's window handling: display-cutout
  *   shortEdges mode on API 28+, decor-not-fitted + hidden transient system
- *   bars on API 30+, and the immersive systemUiVisibility flags — the fix for
- *   the black bar on tall screens.
- * - The texture-region setup that the stock code re-ran every frame moves to
- *   a one-time init call (the port's flicker fix). It needs seven registers,
- *   more than the init method has, so it is added as a small static helper
- *   method on the same class and invoked from init.
+ *   bars on API 30+, and the immersive systemUiVisibility flags — the fix
+ *   for the black bar on tall screens.
+ * - The texture-region setup that the stock code re-ran every frame moves
+ *   to a one-time init call (the port's flicker fix). It needs seven
+ *   registers, more than the init method has, so it is added as a small
+ *   static helper method on the same class and invoked from init.
  */
 @Suppress("unused")
 val widescreenPatch = bytecodePatch(
     name = "Adapt to modern displays",
-    description = "Widens the game world from 512 to 640 units with the matching geometry " +
-        "adjustments, reworks the scene layout for the wider field, adds display-cutout " +
-        "and immersive window handling (fixes the black bar on tall screens), and moves " +
-        "the per-frame texture setup to a one-time init call (the port's flicker fix).",
+    description = "Adapts the game world to the display: the world height is computed at " +
+        "startup from the screen size (288 units wide, height scaled to the screen and " +
+        "never below the original 512), and the scene, pipe and texture geometry follows " +
+        "it, so the game fills any screen 16:9 or taller without bars. Also adds " +
+        "display-cutout and immersive window handling (fixes the black bar on tall " +
+        "screens) and moves the per-frame texture setup to a one-time init call (the " +
+        "port's flicker fix).",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_FLAPPY_BIRD)
 
     execute {
-        // Engine camera width: 512.0f -> 640.0f. (For const/high16, dexlib2
-        // reports the narrow literal already shifted: 0x44000000.)
+        // Add the adaptive layout fields to GameActivity (initial values are
+        // the stock 512 layout).
+        run {
+            val activityClass = mutableClassDefBy(GAME_ACTIVITY)
+            ADAPTIVE_FIELDS.forEach { (fieldName, fieldType, initialValue) ->
+                activityClass.staticFields.add(
+                    MutableField(
+                        ImmutableField(
+                            GAME_ACTIVITY,
+                            fieldName,
+                            fieldType,
+                            AccessFlags.PUBLIC.value or AccessFlags.STATIC.value,
+                            initialValue,
+                            emptySet(),
+                            emptySet(),
+                        ),
+                    ),
+                )
+            }
+        }
+
+        // Engine options: compute the adaptive values first, then build the
+        // camera and resolution policy from adaptiveHeight instead of the
+        // stock 512.0f constant (one register feeds both constructors).
         EngineConfigFingerprint.method.apply {
+            // Replace first: the compute block itself loads 0x44000000 several
+            // times, so the camera constant must be gone before it is added.
             val index = requireLiteralIndices(0x44000000, Opcode.CONST_HIGH16).single()
             val register = getInstruction<OneRegisterInstruction>(index).registerA
-            replaceInstruction(index, "const/high16 v$register, 0x44200000")
+            replaceInstruction(index, "sget v$register, $F_HEIGHT")
+            addInstructions(0, ADAPTIVE_COMPUTE_BLOCK)
         }
 
         // onCreate: prepend the port's cutout/immersive window block.
         GameActivityOnCreateFingerprint.method.addInstructions(0, ONCREATE_WINDOW_BLOCK)
 
-        // Bird: init position 0xf6 -> 0x136; update rsub-int 0x190 -> 0x210 (x2).
-        BirdInitFingerprint.method.replaceConst16Literal(0xf6, 0x136)
-        BirdUpdateFingerprint.method.replaceRsubIntLiteral(0x190, 0x210, count = 2)
+        // Bird: init position is center-anchored (H/2 - 10); the update floor
+        // checks run against the ground top (H - 112).
+        BirdInitFingerprint.method.replaceConst16WithField(0xf6, F_HALF_MINUS_10)
+        BirdUpdateFingerprint.method.replaceRsubWithField(0x190, F_MINUS_112, scratch = 4, count = 2)
 
         // Scene update: the complex method, edited region by region.
         SceneUpdateFingerprint.method.apply {
@@ -197,8 +391,8 @@ val widescreenPatch = bytecodePatch(
             // 3. K pipe setup span (8 instructions) -> fixed F/G flags.
             replacePipeSetupWithFlags("Lcom/dotgears/flappy/c;->K:Lcom/dotgears/f;", span = 8)
 
-            // 4. The remaining 0x154 width constant -> 0x1d4.
-            replaceConst16Literal(0x154, 0x1d4)
+            // 4. The ground elements' Y (H - 172).
+            replaceConst16WithField(0x154, F_MINUS_172)
 
             // 5. Delete the per-frame P element updates.
             run {
@@ -313,22 +507,20 @@ val widescreenPatch = bytecodePatch(
                 addInstructions(head, SCENE_HEAD_BLOCK)
             }
 
-            // 8. Remaining geometry constants.
-            replaceConst16Literal(0xb4, 0xd0)
-            replaceConst16Literal(0x168, 0x1a0)
-            replaceRsubIntLiteral(0x190, 0x210)
-            replaceRsubIntLiteral(0x200, 0x280, count = 2)
-            replaceConst16Literal(0x96, 0xd6)
-            run {
-                val index = requireLiteralIndices(0x96, Opcode.ADD_INT_LIT16).single()
-                val insn = getInstruction<TwoRegisterInstruction>(index)
-                replaceInstruction(index, "add-int/lit16 v${insn.registerA}, v${insn.registerB}, 0xd6")
-            }
+            // 8. Remaining adaptive constants: the pipe gap random range
+            //    (j.a(II) bounds), the ground-top and full-height rsub
+            //    checks, and the center-anchored title/bird positions.
+            replaceConst16WithField(0xb4, F_PIPE_MIN)
+            replaceConst16WithField(0x168, F_PIPE_MAX)
+            replaceRsubWithField(0x190, F_MINUS_112, scratch = 3)
+            replaceRsubWithField(0x200, F_HEIGHT_INT, scratch = 3, count = 2)
+            replaceConst16WithField(0x96, F_HALF_MINUS_106)
+            replaceAddLit16WithField(0x96, F_HALF_MINUS_106, scratch = 3)
         }
 
-        // Scene layout: width constant, offset-block deletion, K and R spans.
+        // Scene layout: ground Y (H - 172), offset-block deletion, K and R spans.
         SceneLayoutFingerprint.method.apply {
-            replaceConst16Literal(0x154, 0x1d4)
+            replaceConst16WithField(0x154, F_MINUS_172)
             deletePipeOffsetBlock()
             replacePipeSetupWithFlags("Lcom/dotgears/flappy/c;->K:Lcom/dotgears/f;", span = 7)
             replacePipeSetupWithFlags("Lcom/dotgears/flappy/c;->R:Lcom/dotgears/f;", span = 6)
@@ -385,19 +577,15 @@ val widescreenPatch = bytecodePatch(
             addInstructions(call + 1, "invoke-virtual {v0, v1, v2}, Lcom/dotgears/g;->c(II)V")
         }
 
-        // e draw helper: add-int/lit16 offset 0x82 -> 0xc2.
-        EDrawFingerprint.method.apply {
-            val index = requireLiteralIndices(0x82, Opcode.ADD_INT_LIT16).single()
-            val insn = getInstruction<TwoRegisterInstruction>(index)
-            replaceInstruction(index, "add-int/lit16 v${insn.registerA}, v${insn.registerB}, 0xc2")
-        }
+        // e draw helper: center-anchored offset (H/2 - 126).
+        EDrawFingerprint.method.replaceAddLit16WithField(0x82, F_HALF_MINUS_126, scratch = 3)
 
-        // f draw helper: position constants 0x92 -> 0xd2, 0xdc -> 0x11c.
-        FDrawFingerprint.method.replaceConst16Literal(0x92, 0xd2)
-        FDrawFingerprint.method.replaceConst16Literal(0xdc, 0x11c)
+        // f draw helper: center-anchored positions (H/2 - 110, H/2 - 36).
+        FDrawFingerprint.method.replaceConst16WithField(0x92, F_HALF_MINUS_110)
+        FDrawFingerprint.method.replaceConst16WithField(0xdc, F_HALF_MINUS_36)
 
-        // p: constructor rsub-int 0x200 -> 0x280; region width 0x1f8 -> 0x278.
-        PConstructorFingerprint.method.replaceRsubIntLiteral(0x200, 0x280)
-        PRegionFingerprint.method.replaceConst16Literal(0x1f8, 0x278)
+        // p: constructor rsub against H; region size H - 8.
+        PConstructorFingerprint.method.replaceRsubWithField(0x200, F_HEIGHT_INT, scratch = 1)
+        PRegionFingerprint.method.replaceConst16WithField(0x1f8, F_MINUS_8)
     }
 }

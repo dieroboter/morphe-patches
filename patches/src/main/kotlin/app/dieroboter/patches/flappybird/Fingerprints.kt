@@ -10,7 +10,8 @@ internal const val E_CLASS = "Lcom/dotgears/flappy/e;"
 internal const val F_CLASS = "Lcom/dotgears/flappy/f;"
 internal const val P_CLASS = "Lcom/dotgears/p;"
 
-// GameActivity: builds the AndEngine engine options (holds the 512.0f camera width).
+// GameActivity: builds the AndEngine engine options (camera + resolution policy);
+// the adaptive display patch prepends its height computation here.
 internal object EngineConfigFingerprint : Fingerprint(
     definingClass = GAME_ACTIVITY,
     name = "a",
