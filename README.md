@@ -15,7 +15,25 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 ## Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.1.0](https://github.com/dieroboter/morphe-patches/releases/tag/v1.1.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;27 patches total
+> **[v1.2.0-dev.1](https://github.com/dieroboter/morphe-patches/releases/tag/v1.2.0-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;31 patches total
+<details open>
+<summary>Flappy Bird&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
+<br>
+
+**Supported versions:**
+
+| 1.3 |
+| :---: |
+
+| Patch | Description | Options |
+|----------|----------------|-----------|
+| [Adapt to modern displays](#adapt-to-modern-displays) | Widens the game world from 512 to 640 units with the matching geometry adjustments, reworks the scene layout for the wider field, adds display-cutout and immersive window handling (fixes the black bar on tall screens), and moves the per-frame texture setup to a one-time init call (the port's flicker fix). |  |
+| [Convert to 64-bit](#convert-to-64-bit) | Removes the bundled 32-bit native libraries (libandengine.so for armeabi, armeabi-v7a and x86). The engine's native loading is exception-guarded in the stock code and falls back to its Java implementation, so the game becomes ABI-neutral and installs on 64-bit-only devices. |  |
+| [Modernize manifest and resources](#modernize-manifest-and-resources) | Makes the game activity the launcher and removes the splash screen and AdMob activity, drops the INTERNET and ACCESS_NETWORK_STATE permissions, raises the SDK levels to the port's min 14 / target 34 (current Android refuses to install the stock target 15), adds an adaptive launcher icon and display-cutout theme settings, removes the dead Google sign-in resources, replaces the sound effects with the port's re-encoded versions, and sets the version to 1.12 (versionCode 13). |  |
+| [Remove ads and Google services hooks](#remove-ads-and-google-services-hooks) | Hides the AdMob banner and removes the ad request so no ad is ever loaded, disconnects the Google Play Games activity hook, and removes the port-removed tap-zone handler and scene trigger tied to the old services UI. |  |
+
+</details>
+
 <details open>
 <summary>Geometry Dash Meltdown&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
