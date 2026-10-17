@@ -1,3 +1,9 @@
+## [1.2.0](https://github.com/dieroboter/morphe-patches/compare/v1.1.0...v1.2.0) (2026-10-17)
+
+### New Features
+
+* Add Flappy Bird patches ([b69984b](https://github.com/dieroboter/morphe-patches/commit/b69984b74e19ee2d874d5f9ca83095cfbaafaff1))
+
 ## [1.2.0-dev.1](https://github.com/dieroboter/morphe-patches/compare/v1.1.0...v1.2.0-dev.1) (2026-10-17)
 
 ### New Features
