@@ -14,9 +14,9 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 
 ## Patches list
 
-<!-- PATCHES_START EXPANDED -->
+<!-- PATCHES_START -->
 > **[v1.3.0-dev.3](https://github.com/dieroboter/morphe-patches/releases/tag/v1.3.0-dev.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;31 patches total
-<details open>
+<details>
 <summary>Flappy Bird&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
 
@@ -34,7 +34,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 
 </details>
 
-<details open>
+<details>
 <summary>Geometry Dash Meltdown&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
 
@@ -52,7 +52,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 
 </details>
 
-<details open>
+<details>
 <summary>Geometry Dash SubZero&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
 
@@ -70,7 +70,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 
 </details>
 
-<details open>
+<details>
 <summary>Geometry Dash World&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
 
@@ -88,7 +88,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 
 </details>
 
-<details open>
+<details>
 <summary>GIF Maker&nbsp;&nbsp;•&nbsp;&nbsp;7 patches</summary>
 <br>
 
@@ -109,7 +109,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 
 </details>
 
-<details open>
+<details>
 <summary>WiFi FTP Server&nbsp;&nbsp;•&nbsp;&nbsp;8 patches</summary>
 <br>
 
