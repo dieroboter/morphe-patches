@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.4.0-dev.1",
+  "version": "1.4.0-dev.2",
   "patches": [
     {
       "name": "Adapt to modern displays",
@@ -654,7 +654,7 @@
     },
     {
       "name": "Remove ad and tracking components",
-      "description": "Removes from the manifest: the ad networks' auto-init providers (AppLovin, AdMob, BidMachine, Vungle, Meta) and the Unity Ads startup initializer, so no ad SDK initializes at app start; Firebase's init provider, its Analytics, Crashlytics, Remote Config and Sessions component registrations, and the Google Measurement components, so Firebase analytics and crash reporting never start; and the ad-tracking permissions (AD_ID, the Ad Services permissions, the install referrer permission and Amazon ATTEST).",
+      "description": "Removes from the manifest: the ad networks' auto-init providers (AppLovin, AdMob, BidMachine, Vungle, Meta) and the Unity Ads startup initializer, so no ad SDK initializes at app start; Firebase's init provider and the Google Measurement components, so Firebase Analytics has no backend (the stock manifest already disables Firebase Analytics and Crashlytics collection); and the ad-tracking permissions (AD_ID, the Ad Services permissions, the install referrer permission and Amazon ATTEST).",
       "default": true,
       "category": null,
       "compatiblePackages": [

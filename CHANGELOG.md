@@ -1,3 +1,9 @@
+## [1.4.0-dev.2](https://github.com/dieroboter/morphe-patches/compare/v1.4.0-dev.1...v1.4.0-dev.2) (2026-10-18)
+
+### Bug Fixes
+
+* Keep Firebase component registrars in Solitaire manifest patch ([9a3a466](https://github.com/dieroboter/morphe-patches/commit/9a3a466d03eafc6f78c5fa3a44fed83ec51a744b))
+
 ## [1.4.0-dev.1](https://github.com/dieroboter/morphe-patches/compare/v1.3.0...v1.4.0-dev.1) (2026-10-18)
 
 ### Bug Fixes

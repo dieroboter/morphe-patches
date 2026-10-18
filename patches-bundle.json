@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-18T23:18:19",
-  "description": "## [1.4.0-dev.1](https://github.com/dieroboter/morphe-patches/compare/v1.3.0...v1.4.0-dev.1) (2026-10-18)\n\n### Bug Fixes\n\n* **solitaire:** no-op MWAdNetController.verifyMAXMediation, the AppLovin mediation debugger entry [skip ci] ([e69d54d](https://github.com/dieroboter/morphe-patches/commit/e69d54dacecccd3e73af188fdc77d5bba392ff9a))\n\n### New Features\n\n* Add Solitaire patches - disable all ads and ad components, disable analytics and tracking, remove ad and tracking components ([c21bf7b](https://github.com/dieroboter/morphe-patches/commit/c21bf7baa7edbf0c69ba0ef3d8c4beadbb35dd88))",
-  "download_url": "https://github.com/dieroboter/morphe-patches/releases/download/v1.4.0-dev.1/patches-1.4.0-dev.1.mpp",
+  "created_at": "2026-10-18T23:33:43",
+  "description": "## [1.4.0-dev.2](https://github.com/dieroboter/morphe-patches/compare/v1.4.0-dev.1...v1.4.0-dev.2) (2026-10-18)\n\n### Bug Fixes\n\n* Keep Firebase component registrars in Solitaire manifest patch ([9a3a466](https://github.com/dieroboter/morphe-patches/commit/9a3a466d03eafc6f78c5fa3a44fed83ec51a744b))",
+  "download_url": "https://github.com/dieroboter/morphe-patches/releases/download/v1.4.0-dev.2/patches-1.4.0-dev.2.mpp",
   "signature_download_url": "",
-  "version": "1.4.0-dev.1"
+  "version": "1.4.0-dev.2"
 }
