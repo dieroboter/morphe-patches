@@ -1,3 +1,14 @@
+## [1.3.0](https://github.com/dieroboter/morphe-patches/compare/v1.2.1...v1.3.0) (2026-10-18)
+
+### Bug Fixes
+
+* **flappybird:** anchor the background to the ground on short screens ([35d5bdc](https://github.com/dieroboter/morphe-patches/commit/35d5bdccdf01579675ce09af97773d507ee95acc))
+
+### New Features
+
+* Extend Flappy Bird display adaptation to screens shorter than 16:9 ([ca2673d](https://github.com/dieroboter/morphe-patches/commit/ca2673d46a8a56a06e44d3be81ee68320e7157a6))
+* Make Flappy Bird display patch adapt to any screen height ([0f34079](https://github.com/dieroboter/morphe-patches/commit/0f3407915d3a5a8571caeb0f150fad145fbdd828))
+
 ## [1.3.0-dev.3](https://github.com/dieroboter/morphe-patches/compare/v1.3.0-dev.2...v1.3.0-dev.3) (2026-10-18)
 
 ### Bug Fixes

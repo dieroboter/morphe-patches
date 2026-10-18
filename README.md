@@ -15,7 +15,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 ## Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.3.0-dev.3](https://github.com/dieroboter/morphe-patches/releases/tag/v1.3.0-dev.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;31 patches total
+> **[v1.3.0](https://github.com/dieroboter/morphe-patches/releases/tag/v1.3.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;31 patches total
 <details open>
 <summary>Flappy Bird&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
