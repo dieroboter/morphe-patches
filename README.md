@@ -15,7 +15,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 ## Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.3.0-dev.2](https://github.com/dieroboter/morphe-patches/releases/tag/v1.3.0-dev.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;31 patches total
+> **[v1.3.0-dev.3](https://github.com/dieroboter/morphe-patches/releases/tag/v1.3.0-dev.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;31 patches total
 <details open>
 <summary>Flappy Bird&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
@@ -27,7 +27,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 
 | Patch | Description | Options |
 |----------|----------------|-----------|
-| [Adapt to modern displays](#adapt-to-modern-displays) | Adapts the game world to the display: the world height is computed at startup from the screen size (288 units wide, height scaled to the screen, from a minimum of 384), and the scene, pipe and texture geometry follows it, so the game adapts to any screen from 4:3 up through tall phones without bars. Also adds display-cutout and immersive window handling (fixes the black bar on tall screens) and moves the per-frame texture setup to a one-time init call (the port's flicker fix). |  |
+| [Adapt to modern displays](#adapt-to-modern-displays) | Adapts the game world to the display: the world height is computed at startup from the screen size (288 units wide, height scaled to the screen, from a minimum of 384), and the scene, pipe and texture geometry follows it, so the game adapts to any screen from 4:3 up through tall phones without bars. On screens shorter than the original 16:9 the background is anchored to the ground, so its skyline and bushes stay sitting on the ground instead of sinking behind it. Also adds display-cutout and immersive window handling (fixes the black bar on tall screens) and moves the per-frame texture setup to a one-time init call (the port's flicker fix). |  |
 | [Convert to 64-bit](#convert-to-64-bit) | Removes the bundled 32-bit native libraries (libandengine.so for armeabi, armeabi-v7a and x86). The engine's native loading is exception-guarded in the stock code and falls back to its Java implementation, so the game becomes ABI-neutral and installs on 64-bit-only devices. |  |
 | [Modernize manifest and resources](#modernize-manifest-and-resources) | Makes the game activity the launcher and removes the splash screen and AdMob activity, drops the INTERNET and ACCESS_NETWORK_STATE permissions, raises the SDK levels to the port's min 14 / target 34 (current Android refuses to install the stock target 15), adds an adaptive launcher icon and display-cutout theme settings, removes the dead Google sign-in resources, and replaces the sound effects with the port's re-encoded versions. The app's version is left untouched. |  |
 | [Remove ads and Google services hooks](#remove-ads-and-google-services-hooks) | Hides the AdMob banner and removes the ad request so no ad is ever loaded, disconnects the Google Play Games activity hook, and removes the port-removed tap-zone handler and scene trigger tied to the old services UI. |  |

@@ -1,3 +1,9 @@
+## [1.3.0-dev.3](https://github.com/dieroboter/morphe-patches/compare/v1.3.0-dev.2...v1.3.0-dev.3) (2026-10-18)
+
+### Bug Fixes
+
+* **flappybird:** anchor the background to the ground on short screens ([35d5bdc](https://github.com/dieroboter/morphe-patches/commit/35d5bdccdf01579675ce09af97773d507ee95acc))
+
 ## [1.3.0-dev.2](https://github.com/dieroboter/morphe-patches/compare/v1.3.0-dev.1...v1.3.0-dev.2) (2026-10-17)
 
 ### New Features
