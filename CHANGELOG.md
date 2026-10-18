@@ -1,3 +1,9 @@
+## [1.3.0-dev.4](https://github.com/dieroboter/morphe-patches/compare/v1.3.0-dev.3...v1.3.0-dev.4) (2026-10-18)
+
+### New Features
+
+* Add Solitaire patches - disable all ads and ad components, disable analytics and tracking, remove ad and tracking components ([c21bf7b](https://github.com/dieroboter/morphe-patches/commit/c21bf7baa7edbf0c69ba0ef3d8c4beadbb35dd88))
+
 ## [1.3.0-dev.3](https://github.com/dieroboter/morphe-patches/compare/v1.3.0-dev.2...v1.3.0-dev.3) (2026-10-18)
 
 ### Bug Fixes

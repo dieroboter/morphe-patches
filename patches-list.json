@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.3.0-dev.3",
+  "version": "1.3.0-dev.4",
   "patches": [
     {
       "name": "Adapt to modern displays",
@@ -367,6 +367,58 @@
       "options": []
     },
     {
+      "name": "Disable all ads and ad components",
+      "description": "No-ops the MobilityWare ad bridge (UnityAdControl) and facade (AdControl2) show/request methods and makes their availability queries return false, so no banner, interstitial, rewarded, native or internal cross-promo ad is loaded or shown. Also disables the framework's self-start path (AdParams2 config fetch, MWAdNetController.onStart) and every network adapter's startNet/initialize entry point, so AppLovin MAX, AdMob and the other mediated ad networks are never initialized.",
+      "default": true,
+      "category": null,
+      "compatiblePackages": [
+        {
+          "packageName": "com.mobilityware.solitaire",
+          "name": "Solitaire",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": null,
+          "signatures": null,
+          "targets": [
+            {
+              "version": "9.8.0.6679",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable analytics and tracking",
+      "description": "No-ops the AppsFlyer Unity wrapper entry points (initSDK, startTracking, trackEvent) and the AppsFlyer SDK implementation's start, logEvent and logSession methods, so AppsFlyer never initializes and sends no session, event or attribution data. Firebase Analytics and Crashlytics are disabled by the manifest patch, which removes their auto-init components.",
+      "default": true,
+      "category": null,
+      "compatiblePackages": [
+        {
+          "packageName": "com.mobilityware.solitaire",
+          "name": "Solitaire",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": null,
+          "signatures": null,
+          "targets": [
+            {
+              "version": "9.8.0.6679",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Disable banner and interstitial ads",
       "description": "No-ops the native bridge methods that show banner and interstitial ads (LiteRobTopActivity._enableBanner / _showInterstitial) and makes _hasCachedInterstitial report false. Rewarded video ads are left working.",
       "default": true,
@@ -590,6 +642,32 @@
           "targets": [
             {
               "version": "2.4.0",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove ad and tracking components",
+      "description": "Removes from the manifest: the ad networks' auto-init providers (AppLovin, AdMob, BidMachine, Vungle, Meta) and the Unity Ads startup initializer, so no ad SDK initializes at app start; Firebase's init provider, its Analytics, Crashlytics, Remote Config and Sessions component registrations, and the Google Measurement components, so Firebase analytics and crash reporting never start; and the ad-tracking permissions (AD_ID, the Ad Services permissions, the install referrer permission and Amazon ATTEST).",
+      "default": true,
+      "category": null,
+      "compatiblePackages": [
+        {
+          "packageName": "com.mobilityware.solitaire",
+          "name": "Solitaire",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": null,
+          "signatures": null,
+          "targets": [
+            {
+              "version": "9.8.0.6679",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
