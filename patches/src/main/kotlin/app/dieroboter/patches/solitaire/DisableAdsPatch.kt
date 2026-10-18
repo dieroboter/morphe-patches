@@ -111,7 +111,9 @@ private val ADAPTER_CLASSES = listOf(
  * - Self-start machinery: AdParams2 is a Thread whose run() fetches the
  *   remote ad configuration that builds the adapter tiers; run() and
  *   onResume() are no-ops, and MWAdNetController.onStart() (the lifecycle
- *   entry that starts the tiers) is a no-op.
+ *   entry that starts the tiers) is a no-op. MWAdNetController's
+ *   verifyMAXMediation() (which would open the AppLovin mediation debugger)
+ *   is a no-op too.
  * - Adapters: startNet() returns false on every adapter, and the direct
  *   AdMob/GAM/Digital Turbine initialize methods are no-ops, so no ad SDK
  *   initializes even if some path reaches an adapter.
@@ -142,6 +144,7 @@ val disableAdsPatch = bytecodePatch(
         nullMethod(AD_CONTROL, "getBanner", "Landroid/app/Activity;$STRING", "Landroid/view/View;")
 
         noOpMethod(AD_NET_CONTROLLER, "onStart")
+        noOpMethod(AD_NET_CONTROLLER, "verifyMAXMediation")
         noOpMethod(AD_PARAMS, "run")
         noOpMethod(AD_PARAMS, "onResume")
 
