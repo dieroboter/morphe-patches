@@ -1,3 +1,13 @@
+## [1.4.0-dev.1](https://github.com/dieroboter/morphe-patches/compare/v1.3.0...v1.4.0-dev.1) (2026-10-18)
+
+### Bug Fixes
+
+* **solitaire:** no-op MWAdNetController.verifyMAXMediation, the AppLovin mediation debugger entry [skip ci] ([e69d54d](https://github.com/dieroboter/morphe-patches/commit/e69d54dacecccd3e73af188fdc77d5bba392ff9a))
+
+### New Features
+
+* Add Solitaire patches - disable all ads and ad components, disable analytics and tracking, remove ad and tracking components ([c21bf7b](https://github.com/dieroboter/morphe-patches/commit/c21bf7baa7edbf0c69ba0ef3d8c4beadbb35dd88))
+
 ## [1.3.0](https://github.com/dieroboter/morphe-patches/compare/v1.2.1...v1.3.0) (2026-10-18)
 
 ### Bug Fixes
