@@ -75,4 +75,15 @@ object Constants {
             )
         )
     )
+
+    val COMPATIBILITY_SOLITAIRE = Compatibility(
+        name = "Solitaire",
+        packageName = "com.mobilityware.solitaire",
+        apkFileType = ApkFileType.APK,
+        targets = listOf(
+            AppTarget(
+                version = "9.8.0.6679"
+            )
+        )
+    )
 }
