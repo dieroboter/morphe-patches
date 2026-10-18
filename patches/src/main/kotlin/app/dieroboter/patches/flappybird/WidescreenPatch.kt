@@ -272,11 +272,27 @@ private const val ADAPTIVE_COMPUTE_BLOCK = """
     sput v0, Lcom/dotgears/GameActivity;->adaptivePipeMax:I
 """
 
+// Draws the background region into the world rect, with its texture's top
+// cropped when the world is shorter than the stock 512: the cropped top
+// (v1' = v2 - (v2 - v1) * H / 512, clamped below at v1) keeps the art's
+// bottom 1:1 with the world, so the skyline and bushes stay on the ground.
+// The clamp is a branch-free Math.max on purpose: a text-block label
+// inserted into this particular method assembled to the wrong target
+// (verified in the output smali), so this block uses no labels or
+// branches (the inline smali compiler also has no abs-float).
 private const val SCENE_HEAD_BLOCK = """
     iget v5, v0, Lcom/dotgears/i;->d:F
     iget v6, v0, Lcom/dotgears/i;->e:F
     iget v7, v0, Lcom/dotgears/i;->f:F
     iget v8, v0, Lcom/dotgears/i;->g:F
+    sget v1, Lcom/dotgears/GameActivity;->adaptiveHeight:F
+    const/high16 v2, 0x44000000
+    div-float/2addr v1, v2
+    sub-float v2, v8, v6
+    mul-float/2addr v2, v1
+    sub-float v2, v8, v2
+    invoke-static {v2, v6}, Ljava/lang/Math;->max(FF)F
+    move-result v6
     const/4 v1, 0x0
     const/4 v2, 0x0
     const/16 v3, 0x120
@@ -313,6 +329,11 @@ private const val SETUP_BLOCK = """
  *   screen from 4:3 up through tall phones with no letterbox bars, while a
  *   20:9 screen gets exactly the port's 640 layout and a 16:9 screen gets
  *   exactly the stock layout.
+ * - On screens shorter than the stock 512 height, the background draw
+ *   crops sky off the top of its texture instead of scaling the whole
+ *   image into the shorter world, so the skyline and bushes keep their
+ *   stock positions relative to the ground; at 512 and above the full
+ *   texture is drawn, as in the port.
  * - The pipe/ground elements stop being positioned from atlas offsets and
  *   get the fixed F/G flag setup; a score-overlay tap block and per-frame
  *   element updates tied to the old layout are removed, and a scene trigger
@@ -333,7 +354,9 @@ val widescreenPatch = bytecodePatch(
         "startup from the screen size (288 units wide, height scaled to the screen, " +
         "from a minimum of 384), and the scene, pipe and texture geometry follows it, " +
         "so the game adapts to any screen from 4:3 up through tall phones without " +
-        "bars. Also adds display-cutout and immersive window handling (fixes the " +
+        "bars. On screens shorter than the original 16:9 the background is anchored " +
+        "to the ground, so its skyline and bushes stay sitting on the ground " +
+        "instead of sinking behind it. Also adds display-cutout and immersive window handling (fixes the " +
         "black bar on tall screens) and moves the per-frame texture setup to a " +
         "one-time init call (the port's flicker fix).",
     default = true
