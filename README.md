@@ -15,7 +15,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 ## Patches list
 
 <!-- PATCHES_START -->
-> **[v1.3.0-dev.4](https://github.com/dieroboter/morphe-patches/releases/tag/v1.3.0-dev.4)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;34 patches total
+> **[v1.3.0](https://github.com/dieroboter/morphe-patches/releases/tag/v1.3.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;31 patches total
 <details>
 <summary>Flappy Bird&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
@@ -106,23 +106,6 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 | [Disable rate prompts](#disable-rate-prompts) | Disables the in-app rate-us prompts (the SDK's rate-dialog source gate always returns false) and hides the 'Rate us' row in the settings screen. |  |
 | [Strip ad tracking permissions](#strip-ad-tracking-permissions) | Removes the ad identifier permissions (AD_ID and the Ad Services permissions: ad ID, attribution and topics) from the manifest. |  |
 | [Unlock premium](#unlock-premium) | Unlocks premium: forces the PremiumHelper SDK's isPremium check to always return true, which also suppresses banner/interstitial ads and the paywall and relaunch offers through the SDK's own premium paths. |  |
-
-</details>
-
-<details>
-<summary>Solitaire&nbsp;&nbsp;•&nbsp;&nbsp;3 patches</summary>
-<br>
-
-**Supported versions:**
-
-| 9.8.0.6679 |
-| :---: |
-
-| Patch | Description | Options |
-|----------|----------------|-----------|
-| [Disable all ads and ad components](#disable-all-ads-and-ad-components) | No-ops the MobilityWare ad bridge (UnityAdControl) and facade (AdControl2) show/request methods and makes their availability queries return false, so no banner, interstitial, rewarded, native or internal cross-promo ad is loaded or shown. Also disables the framework's self-start path (AdParams2 config fetch, MWAdNetController.onStart) and every network adapter's startNet/initialize entry point, so AppLovin MAX, AdMob and the other mediated ad networks are never initialized. |  |
-| [Disable analytics and tracking](#disable-analytics-and-tracking) | No-ops the AppsFlyer Unity wrapper entry points (initSDK, startTracking, trackEvent) and the AppsFlyer SDK implementation's start, logEvent and logSession methods, so AppsFlyer never initializes and sends no session, event or attribution data. Firebase Analytics and Crashlytics are disabled by the manifest patch, which removes their auto-init components. |  |
-| [Remove ad and tracking components](#remove-ad-and-tracking-components) | Removes from the manifest: the ad networks' auto-init providers (AppLovin, AdMob, BidMachine, Vungle, Meta) and the Unity Ads startup initializer, so no ad SDK initializes at app start; Firebase's init provider, its Analytics, Crashlytics, Remote Config and Sessions component registrations, and the Google Measurement components, so Firebase analytics and crash reporting never start; and the ad-tracking permissions (AD_ID, the Ad Services permissions, the install referrer permission and Amazon ATTEST). |  |
 
 </details>
 
