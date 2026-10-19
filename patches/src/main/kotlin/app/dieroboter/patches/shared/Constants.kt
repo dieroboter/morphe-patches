@@ -75,4 +75,15 @@ object Constants {
             )
         )
     )
+
+    val COMPATIBILITY_KLONDIKE = Compatibility(
+        name = "Klondike Solitaire",
+        packageName = "com.smilerlee.klondike",
+        apkFileType = ApkFileType.APK,
+        targets = listOf(
+            AppTarget(
+                version = "5.9"
+            )
+        )
+    )
 }
