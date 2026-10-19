@@ -76,13 +76,13 @@ object Constants {
         )
     )
 
-    val COMPATIBILITY_SOLITAIRE = Compatibility(
-        name = "Solitaire",
-        packageName = "com.mobilityware.solitaire",
+    val COMPATIBILITY_KLONDIKE = Compatibility(
+        name = "Klondike Solitaire",
+        packageName = "com.smilerlee.klondike",
         apkFileType = ApkFileType.APK,
         targets = listOf(
             AppTarget(
-                version = "9.8.0.6679"
+                version = "5.9"
             )
         )
     )
