@@ -1,3 +1,9 @@
+## [1.4.0-dev.4](https://github.com/dieroboter/morphe-patches/compare/v1.4.0-dev.3...v1.4.0-dev.4) (2026-10-19)
+
+### Bug Fixes
+
+* Keep DoodleBI initializers in Klondike analytics patch ([a5e299a](https://github.com/dieroboter/morphe-patches/commit/a5e299a799db5ecf16b2414f65a4375eea184d8d))
+
 ## [1.4.0-dev.3](https://github.com/dieroboter/morphe-patches/compare/v1.4.0-dev.2...v1.4.0-dev.3) (2026-10-19)
 
 ### New Features

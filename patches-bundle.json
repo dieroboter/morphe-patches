@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-19T00:29:02",
-  "description": "## [1.4.0-dev.3](https://github.com/dieroboter/morphe-patches/compare/v1.4.0-dev.2...v1.4.0-dev.3) (2026-10-19)\n\n### New Features\n\n* Add Klondike Solitaire patches ([11dea35](https://github.com/dieroboter/morphe-patches/commit/11dea3526aec2bdf08561ee241a8434c57507f9e))",
-  "download_url": "https://github.com/dieroboter/morphe-patches/releases/download/v1.4.0-dev.3/patches-1.4.0-dev.3.mpp",
+  "created_at": "2026-10-19T00:38:35",
+  "description": "## [1.4.0-dev.4](https://github.com/dieroboter/morphe-patches/compare/v1.4.0-dev.3...v1.4.0-dev.4) (2026-10-19)\n\n### Bug Fixes\n\n* Keep DoodleBI initializers in Klondike analytics patch ([a5e299a](https://github.com/dieroboter/morphe-patches/commit/a5e299a799db5ecf16b2414f65a4375eea184d8d))",
+  "download_url": "https://github.com/dieroboter/morphe-patches/releases/download/v1.4.0-dev.4/patches-1.4.0-dev.4.mpp",
   "signature_download_url": "",
-  "version": "1.4.0-dev.3"
+  "version": "1.4.0-dev.4"
 }
