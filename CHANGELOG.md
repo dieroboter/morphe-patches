@@ -1,3 +1,16 @@
+## [1.4.0](https://github.com/dieroboter/morphe-patches/compare/v1.3.0...v1.4.0) (2026-10-19)
+
+### Bug Fixes
+
+* Keep DoodleBI initializers in Klondike analytics patch ([a5e299a](https://github.com/dieroboter/morphe-patches/commit/a5e299a799db5ecf16b2414f65a4375eea184d8d))
+* Keep Firebase component registrars in Solitaire manifest patch ([9a3a466](https://github.com/dieroboter/morphe-patches/commit/9a3a466d03eafc6f78c5fa3a44fed83ec51a744b))
+* **solitaire:** no-op MWAdNetController.verifyMAXMediation, the AppLovin mediation debugger entry [skip ci] ([e69d54d](https://github.com/dieroboter/morphe-patches/commit/e69d54dacecccd3e73af188fdc77d5bba392ff9a))
+
+### New Features
+
+* Add Klondike Solitaire patches ([11dea35](https://github.com/dieroboter/morphe-patches/commit/11dea3526aec2bdf08561ee241a8434c57507f9e))
+* Add Solitaire patches - disable all ads and ad components, disable analytics and tracking, remove ad and tracking components ([c21bf7b](https://github.com/dieroboter/morphe-patches/commit/c21bf7baa7edbf0c69ba0ef3d8c4beadbb35dd88))
+
 ## [1.4.0-dev.4](https://github.com/dieroboter/morphe-patches/compare/v1.4.0-dev.3...v1.4.0-dev.4) (2026-10-19)
 
 ### Bug Fixes
