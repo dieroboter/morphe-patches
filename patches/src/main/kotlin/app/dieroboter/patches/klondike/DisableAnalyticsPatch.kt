@@ -25,13 +25,16 @@ private const val MAP = "Ljava/util/Map;"
  * - Facebook AppEvents: activateApp() (all 4 overloads), logEvent() (all 6),
  *   logPurchase() (all 3) and setUserData() (both) are no-oped.
  * - DoodleBI, DoodleMobile's own BI layer and the game's only Firebase
- *   consumer: its onCreate() initializers (all 4 overloads), the generic
- *   logEvent/logOnlyOnceEvent sinks, all ten Log/_Log ad-revenue and LTV
- *   event methods, both purchase recorders and commitPendingEvents() are
- *   no-oped. With DoodleBI dead, Firebase Analytics has no sender left in
+ *   consumer: the generic logEvent/logOnlyOnceEvent sinks, all ten
+ *   Log/_Log ad-revenue and LTV event methods, both purchase recorders and
+ *   commitPendingEvents() are no-oped. Its onCreate() initializers are
+ *   deliberately kept: they create the singleton the launcher activity
+ *   dereferences at startup (no-oping them crashed v1.4.0-dev.3 at launch
+ *   with an NPE, per the on-device trace). Initialization sends nothing by
+ *   itself; with the sinks dead, Firebase Analytics has no sender left in
  *   the app (verified: no other code calls FirebaseAnalytics.logEvent).
  *
- * 39 methods in total, all void, all prepended with return-void by
+ * 35 methods in total, all void, all prepended with return-void by
  * [noOpMethod]; every target is asserted to match exactly one method.
  */
 @Suppress("unused")
@@ -92,17 +95,12 @@ val disableAnalyticsPatch = bytecodePatch(
         )
 
         // --- DoodleBI (DoodleMobile BI / Firebase consumer) ---
-        noOpMethod(DOODLE_BI, "onCreate", "Landroid/app/Application;" + STRING)
-        noOpMethod(DOODLE_BI, "onCreate", "Landroid/app/Application;" + STRING + STRING)
-        noOpMethod(
-            DOODLE_BI, "onCreate",
-            "Landroid/app/Application;" + STRING + STRING + "Lcom/doodlemobile/doodle_bi/DoodleBI\$b;"
-        )
-        noOpMethod(
-            DOODLE_BI, "onCreate",
-            "Landroid/app/Application;" + STRING + STRING + STRING + STRING +
-                "Lcom/doodlemobile/doodle_bi/DoodleBI\$b;"
-        )
+        // Its onCreate() initializers are deliberately NOT touched: they
+        // create the DoodleBI singleton, which KlondikeActivity dereferences
+        // in its own onCreate (getInstance().addAdditional...Behavior).
+        // No-oping them crashed the game at launch with an NPE
+        // (v1.4.0-dev.3, on-device trace). Initialization is harmless with
+        // every event sink below dead.
         noOpMethod(DOODLE_BI, "logEvent", STRING + MAP)
         noOpMethod(DOODLE_BI, "logOnlyOnceEvent", STRING + STRING + MAP)
         noOpMethod(DOODLE_BI, "LogAdditionalAfAd", "III")
