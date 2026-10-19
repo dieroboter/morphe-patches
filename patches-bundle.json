@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-18T23:33:43",
-  "description": "## [1.4.0-dev.2](https://github.com/dieroboter/morphe-patches/compare/v1.4.0-dev.1...v1.4.0-dev.2) (2026-10-18)\n\n### Bug Fixes\n\n* Keep Firebase component registrars in Solitaire manifest patch ([9a3a466](https://github.com/dieroboter/morphe-patches/commit/9a3a466d03eafc6f78c5fa3a44fed83ec51a744b))",
-  "download_url": "https://github.com/dieroboter/morphe-patches/releases/download/v1.4.0-dev.2/patches-1.4.0-dev.2.mpp",
+  "created_at": "2026-10-19T00:29:02",
+  "description": "## [1.4.0-dev.3](https://github.com/dieroboter/morphe-patches/compare/v1.4.0-dev.2...v1.4.0-dev.3) (2026-10-19)\n\n### New Features\n\n* Add Klondike Solitaire patches ([11dea35](https://github.com/dieroboter/morphe-patches/commit/11dea3526aec2bdf08561ee241a8434c57507f9e))",
+  "download_url": "https://github.com/dieroboter/morphe-patches/releases/download/v1.4.0-dev.3/patches-1.4.0-dev.3.mpp",
   "signature_download_url": "",
-  "version": "1.4.0-dev.2"
+  "version": "1.4.0-dev.3"
 }

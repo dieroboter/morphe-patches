@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.4.0-dev.2",
+  "version": "1.4.0-dev.3",
   "patches": [
     {
       "name": "Adapt to modern displays",
@@ -368,20 +368,20 @@
     },
     {
       "name": "Disable all ads and ad components",
-      "description": "No-ops the MobilityWare ad bridge (UnityAdControl) and facade (AdControl2) show/request methods and makes their availability queries return false, so no banner, interstitial, rewarded, native or internal cross-promo ad is loaded or shown. Also disables the framework's self-start path (AdParams2 config fetch, MWAdNetController.onStart) and every network adapter's startNet/initialize entry point, so AppLovin MAX, AdMob and the other mediated ad networks are never initialized.",
+      "description": "Disables the game's entire ad stack: AdMob mediation initialization and the banner, interstitial, rewarded and app-open load entry points; Meta Audience Network initialization and loads; and Amazon APS (DTB) ad requests. No ads of any format are fetched or shown.",
       "default": true,
       "category": null,
       "compatiblePackages": [
         {
-          "packageName": "com.mobilityware.solitaire",
-          "name": "Solitaire",
+          "packageName": "com.smilerlee.klondike",
+          "name": "Klondike Solitaire",
           "description": null,
           "apkFileType": "APK",
           "appIconColor": null,
           "signatures": null,
           "targets": [
             {
-              "version": "9.8.0.6679",
+              "version": "5.9",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -394,20 +394,20 @@
     },
     {
       "name": "Disable analytics and tracking",
-      "description": "No-ops the AppsFlyer Unity wrapper entry points (initSDK, startTracking, trackEvent) and the AppsFlyer SDK implementation's start, logEvent and logSession methods, so AppsFlyer never initializes and sends no session, event or attribution data. Firebase Analytics and Crashlytics are disabled by the manifest patch, which removes their auto-init components.",
+      "description": "Disables AppsFlyer (session start and event logging), Facebook AppEvents (activation, events, purchases, user data) and DoodleBI, the game's own reporting layer and its only Firebase Analytics consumer. No usage or ad-revenue events leave the device through these channels.",
       "default": true,
       "category": null,
       "compatiblePackages": [
         {
-          "packageName": "com.mobilityware.solitaire",
-          "name": "Solitaire",
+          "packageName": "com.smilerlee.klondike",
+          "name": "Klondike Solitaire",
           "description": null,
           "apkFileType": "APK",
           "appIconColor": null,
           "signatures": null,
           "targets": [
             {
-              "version": "9.8.0.6679",
+              "version": "5.9",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -654,20 +654,20 @@
     },
     {
       "name": "Remove ad and tracking components",
-      "description": "Removes from the manifest: the ad networks' auto-init providers (AppLovin, AdMob, BidMachine, Vungle, Meta) and the Unity Ads startup initializer, so no ad SDK initializes at app start; Firebase's init provider and the Google Measurement components, so Firebase Analytics has no backend (the stock manifest already disables Firebase Analytics and Crashlytics collection); and the ad-tracking permissions (AD_ID, the Ad Services permissions, the install referrer permission and Amazon ATTEST).",
+      "description": "Removes from the manifest: the ad networks' and Facebook's auto-init providers (AdMob, Audience Network x2, Facebook) and Firebase's init provider, so none of those SDKs initialize at app start; and the ad-tracking permissions (AD_ID, the Ad Services permissions and the install referrer permission).",
       "default": true,
       "category": null,
       "compatiblePackages": [
         {
-          "packageName": "com.mobilityware.solitaire",
-          "name": "Solitaire",
+          "packageName": "com.smilerlee.klondike",
+          "name": "Klondike Solitaire",
           "description": null,
           "apkFileType": "APK",
           "appIconColor": null,
           "signatures": null,
           "targets": [
             {
-              "version": "9.8.0.6679",
+              "version": "5.9",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,

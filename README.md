@@ -15,7 +15,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 ## Patches list
 
 <!-- PATCHES_START -->
-> **[v1.4.0-dev.2](https://github.com/dieroboter/morphe-patches/releases/tag/v1.4.0-dev.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;34 patches total
+> **[v1.4.0-dev.3](https://github.com/dieroboter/morphe-patches/releases/tag/v1.4.0-dev.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;34 patches total
 <details>
 <summary>Flappy Bird&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
@@ -110,19 +110,19 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 </details>
 
 <details>
-<summary>Solitaire&nbsp;&nbsp;•&nbsp;&nbsp;3 patches</summary>
+<summary>Klondike Solitaire&nbsp;&nbsp;•&nbsp;&nbsp;3 patches</summary>
 <br>
 
 **Supported versions:**
 
-| 9.8.0.6679 |
+| 5.9 |
 | :---: |
 
 | Patch | Description | Options |
 |----------|----------------|-----------|
-| [Disable all ads and ad components](#disable-all-ads-and-ad-components) | No-ops the MobilityWare ad bridge (UnityAdControl) and facade (AdControl2) show/request methods and makes their availability queries return false, so no banner, interstitial, rewarded, native or internal cross-promo ad is loaded or shown. Also disables the framework's self-start path (AdParams2 config fetch, MWAdNetController.onStart) and every network adapter's startNet/initialize entry point, so AppLovin MAX, AdMob and the other mediated ad networks are never initialized. |  |
-| [Disable analytics and tracking](#disable-analytics-and-tracking) | No-ops the AppsFlyer Unity wrapper entry points (initSDK, startTracking, trackEvent) and the AppsFlyer SDK implementation's start, logEvent and logSession methods, so AppsFlyer never initializes and sends no session, event or attribution data. Firebase Analytics and Crashlytics are disabled by the manifest patch, which removes their auto-init components. |  |
-| [Remove ad and tracking components](#remove-ad-and-tracking-components) | Removes from the manifest: the ad networks' auto-init providers (AppLovin, AdMob, BidMachine, Vungle, Meta) and the Unity Ads startup initializer, so no ad SDK initializes at app start; Firebase's init provider and the Google Measurement components, so Firebase Analytics has no backend (the stock manifest already disables Firebase Analytics and Crashlytics collection); and the ad-tracking permissions (AD_ID, the Ad Services permissions, the install referrer permission and Amazon ATTEST). |  |
+| [Disable all ads and ad components](#disable-all-ads-and-ad-components) | Disables the game's entire ad stack: AdMob mediation initialization and the banner, interstitial, rewarded and app-open load entry points; Meta Audience Network initialization and loads; and Amazon APS (DTB) ad requests. No ads of any format are fetched or shown. |  |
+| [Disable analytics and tracking](#disable-analytics-and-tracking) | Disables AppsFlyer (session start and event logging), Facebook AppEvents (activation, events, purchases, user data) and DoodleBI, the game's own reporting layer and its only Firebase Analytics consumer. No usage or ad-revenue events leave the device through these channels. |  |
+| [Remove ad and tracking components](#remove-ad-and-tracking-components) | Removes from the manifest: the ad networks' and Facebook's auto-init providers (AdMob, Audience Network x2, Facebook) and Firebase's init provider, so none of those SDKs initialize at app start; and the ad-tracking permissions (AD_ID, the Ad Services permissions and the install referrer permission). |  |
 
 </details>
 

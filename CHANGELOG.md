@@ -1,3 +1,9 @@
+## [1.4.0-dev.3](https://github.com/dieroboter/morphe-patches/compare/v1.4.0-dev.2...v1.4.0-dev.3) (2026-10-19)
+
+### New Features
+
+* Add Klondike Solitaire patches ([11dea35](https://github.com/dieroboter/morphe-patches/commit/11dea3526aec2bdf08561ee241a8434c57507f9e))
+
 ## [1.4.0-dev.2](https://github.com/dieroboter/morphe-patches/compare/v1.4.0-dev.1...v1.4.0-dev.2) (2026-10-18)
 
 ### Bug Fixes
