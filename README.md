@@ -15,7 +15,25 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 ## Patches list
 
 <!-- PATCHES_START -->
-> **[v1.4.0](https://github.com/dieroboter/morphe-patches/releases/tag/v1.4.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;34 patches total
+> **[v1.5.0-dev.6](https://github.com/dieroboter/morphe-patches/releases/tag/v1.5.0-dev.6)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;40 patches total
+<details>
+<summary>File Manager&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
+<br>
+
+**Supported versions:**
+
+| 3.8.3 |
+| :---: |
+
+| Patch | Description | Options |
+|----------|----------------|-----------|
+| [Disable analytics and telemetry](#disable-analytics-and-telemetry) | Stops the app's event reporting: its own analytics forwarder and Firebase Analytics' event and user-property methods are no-oped, and the developer crash reporter is never started. Firebase Analytics collection was already disabled by the developer; this removes the remaining plumbing. Remote Config is left running - it is the app's configuration channel, not an event pipeline. |  |
+| [Hide premium section in settings](#hide-premium-section-in-settings) | Hides the Premium category and its entry at the top of the Settings screen by setting both preferences invisible whenever the settings screen refreshes. Premium stays unlocked and the payment screen remains reachable from the main menu - only the Settings section is hidden. |  |
+| [Remove ad and tracking components](#remove-ad-and-tracking-components) | Removes from the manifest: the AdMob and Firebase auto-init providers and Firebase's measurement and sessions components, so those SDKs do not start at app start; and the ad-tracking permissions (AD_ID, the Ad Services permissions and the install referrer permission). |  |
+| [Unlock premium](#unlock-premium) | Reports a valid Premium Basic license to the app: the license manager's verdict methods are made to answer yes, so premium features unlock and ads stop (the app serves no ads to licensed users). The billing code itself is untouched - nothing is purchased. |  |
+
+</details>
+
 <details>
 <summary>Flappy Bird&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
@@ -110,7 +128,23 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 </details>
 
 <details>
-<summary>Klondike Solitaire&nbsp;&nbsp;•&nbsp;&nbsp;3 patches</summary>
+<summary>MediaInfo&nbsp;&nbsp;•&nbsp;&nbsp;2 patches</summary>
+<br>
+
+**Supported versions:**
+
+| 26.10 |
+| :---: |
+
+| Patch | Description | Options |
+|----------|----------------|-----------|
+| [Remove premium references](#remove-premium-references) | Removes the visible premium branding: the Subscribe / Manage subscription entry is deleted from the main screen's menu, and the Premium section over the Preferences settings is removed outright (its settings move up into the plain list). The settings themselves stay, and the subscribe screen remains in the app but is no longer reachable. |  |
+| [Unlock premium](#unlock-premium) | Unlocks MediaInfo's premium (the dark theme and subscriber features). The subscription verdict is a purely local Play Billing result held by the app's billing manager; this patch makes that verdict permanently 'subscribed'. No account or server is involved - the app has neither. |  |
+
+</details>
+
+<details>
+<summary>Solitaire&nbsp;&nbsp;•&nbsp;&nbsp;3 patches</summary>
 <br>
 
 **Supported versions:**

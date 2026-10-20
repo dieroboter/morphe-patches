@@ -1,3 +1,39 @@
+## [1.5.0-dev.6](https://github.com/dieroboter/morphe-patches/compare/v1.5.0-dev.5...v1.5.0-dev.6) (2026-10-20)
+
+### Bug Fixes
+
+* Remove the MediaInfo premium category instead of blanking it ([dc4bc04](https://github.com/dieroboter/morphe-patches/commit/dc4bc04d9e20ec0ab8f5488ac5d509f859f49ab2))
+
+## [1.5.0-dev.5](https://github.com/dieroboter/morphe-patches/compare/v1.5.0-dev.4...v1.5.0-dev.5) (2026-10-20)
+
+### Bug Fixes
+
+* Blank MediaInfo premium strings in every locale override ([033dd5e](https://github.com/dieroboter/morphe-patches/commit/033dd5e3428aac4b8b40737eba8a8ee4a762dc0d))
+
+## [1.5.0-dev.4](https://github.com/dieroboter/morphe-patches/compare/v1.5.0-dev.3...v1.5.0-dev.4) (2026-10-20)
+
+### New Features
+
+* Add MediaInfo remove premium references patch ([8d9887a](https://github.com/dieroboter/morphe-patches/commit/8d9887a6d6217bfe07f6fd19b1210542ae12fb67))
+
+## [1.5.0-dev.3](https://github.com/dieroboter/morphe-patches/compare/v1.5.0-dev.2...v1.5.0-dev.3) (2026-10-20)
+
+### New Features
+
+* Add MediaInfo unlock premium patch ([cbc49d4](https://github.com/dieroboter/morphe-patches/commit/cbc49d4b7dc704e6ec93eec5908f0598384da3eb))
+
+## [1.5.0-dev.2](https://github.com/dieroboter/morphe-patches/compare/v1.5.0-dev.1...v1.5.0-dev.2) (2026-10-20)
+
+### New Features
+
+* Add File Manager hide premium settings patch ([fb582e1](https://github.com/dieroboter/morphe-patches/commit/fb582e1fe31b93f287e8ff093292c234faf476da))
+
+## [1.5.0-dev.1](https://github.com/dieroboter/morphe-patches/compare/v1.4.0...v1.5.0-dev.1) (2026-10-20)
+
+### New Features
+
+* Add File Manager patches ([18c678d](https://github.com/dieroboter/morphe-patches/commit/18c678d14a65593ef5eddadad79282532269506d))
+
 ## [1.4.0](https://github.com/dieroboter/morphe-patches/compare/v1.3.0...v1.4.0) (2026-10-19)
 
 ### Bug Fixes

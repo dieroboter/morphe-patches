@@ -77,12 +77,34 @@ object Constants {
     )
 
     val COMPATIBILITY_KLONDIKE = Compatibility(
-        name = "Klondike Solitaire",
+        name = "Solitaire",
         packageName = "com.smilerlee.klondike",
         apkFileType = ApkFileType.APK,
         targets = listOf(
             AppTarget(
                 version = "5.9"
+            )
+        )
+    )
+
+    val COMPATIBILITY_FILE_MANAGER = Compatibility(
+        name = "File Manager",
+        packageName = "com.alphainventor.filemanager",
+        apkFileType = ApkFileType.APK,
+        targets = listOf(
+            AppTarget(
+                version = "3.8.3"
+            )
+        )
+    )
+
+    val COMPATIBILITY_MEDIAINFO = Compatibility(
+        name = "MediaInfo",
+        packageName = "net.mediaarea.mediainfo",
+        apkFileType = ApkFileType.APKM,
+        targets = listOf(
+            AppTarget(
+                version = "26.10"
             )
         )
     )
