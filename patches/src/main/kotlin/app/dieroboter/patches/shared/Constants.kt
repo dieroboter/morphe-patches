@@ -97,4 +97,15 @@ object Constants {
             )
         )
     )
+
+    val COMPATIBILITY_MEDIAINFO = Compatibility(
+        name = "MediaInfo",
+        packageName = "net.mediaarea.mediainfo",
+        apkFileType = ApkFileType.APKM,
+        targets = listOf(
+            AppTarget(
+                version = "26.10"
+            )
+        )
+    )
 }
