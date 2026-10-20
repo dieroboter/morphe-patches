@@ -1,3 +1,9 @@
+## [1.5.0-dev.1](https://github.com/dieroboter/morphe-patches/compare/v1.4.0...v1.5.0-dev.1) (2026-10-20)
+
+### New Features
+
+* Add File Manager patches ([18c678d](https://github.com/dieroboter/morphe-patches/commit/18c678d14a65593ef5eddadad79282532269506d))
+
 ## [1.4.0](https://github.com/dieroboter/morphe-patches/compare/v1.3.0...v1.4.0) (2026-10-19)
 
 ### Bug Fixes

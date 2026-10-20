@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.4.0",
+  "version": "1.5.0-dev.1",
   "patches": [
     {
       "name": "Adapt to modern displays",
@@ -374,7 +374,7 @@
       "compatiblePackages": [
         {
           "packageName": "com.smilerlee.klondike",
-          "name": "Klondike Solitaire",
+          "name": "Solitaire",
           "description": null,
           "apkFileType": "APK",
           "appIconColor": null,
@@ -393,6 +393,32 @@
       "options": []
     },
     {
+      "name": "Disable analytics and telemetry",
+      "description": "Stops the app's event reporting: its own analytics forwarder and Firebase Analytics' event and user-property methods are no-oped, and the developer crash reporter is never started. Firebase Analytics collection was already disabled by the developer; this removes the remaining plumbing. Remote Config is left running - it is the app's configuration channel, not an event pipeline.",
+      "default": true,
+      "category": null,
+      "compatiblePackages": [
+        {
+          "packageName": "com.alphainventor.filemanager",
+          "name": "File Manager",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": null,
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.8.3",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Disable analytics and tracking",
       "description": "Disables AppsFlyer (session start and event logging), Facebook AppEvents (activation, events, purchases, user data) and DoodleBI, the game's own reporting layer and its only Firebase Analytics consumer. No usage or ad-revenue events leave the device through these channels.",
       "default": true,
@@ -400,7 +426,7 @@
       "compatiblePackages": [
         {
           "packageName": "com.smilerlee.klondike",
-          "name": "Klondike Solitaire",
+          "name": "Solitaire",
           "description": null,
           "apkFileType": "APK",
           "appIconColor": null,
@@ -654,13 +680,39 @@
     },
     {
       "name": "Remove ad and tracking components",
+      "description": "Removes from the manifest: the AdMob and Firebase auto-init providers and Firebase's measurement and sessions components, so those SDKs do not start at app start; and the ad-tracking permissions (AD_ID, the Ad Services permissions and the install referrer permission).",
+      "default": true,
+      "category": null,
+      "compatiblePackages": [
+        {
+          "packageName": "com.alphainventor.filemanager",
+          "name": "File Manager",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": null,
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.8.3",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove ad and tracking components",
       "description": "Removes from the manifest: the ad networks' and Facebook's auto-init providers (AdMob, Audience Network x2, Facebook) and Firebase's init provider, so none of those SDKs initialize at app start; and the ad-tracking permissions (AD_ID, the Ad Services permissions and the install referrer permission).",
       "default": true,
       "category": null,
       "compatiblePackages": [
         {
           "packageName": "com.smilerlee.klondike",
-          "name": "Klondike Solitaire",
+          "name": "Solitaire",
           "description": null,
           "apkFileType": "APK",
           "appIconColor": null,
@@ -850,6 +902,32 @@
           "targets": [
             {
               "version": "2.4.0",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Unlock premium",
+      "description": "Reports a valid Premium Basic license to the app: the license manager's verdict methods are made to answer yes, so premium features unlock and ads stop (the app serves no ads to licensed users). The billing code itself is untouched - nothing is purchased.",
+      "default": true,
+      "category": null,
+      "compatiblePackages": [
+        {
+          "packageName": "com.alphainventor.filemanager",
+          "name": "File Manager",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": null,
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.8.3",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,

@@ -15,7 +15,24 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 ## Patches list
 
 <!-- PATCHES_START -->
-> **[v1.4.0](https://github.com/dieroboter/morphe-patches/releases/tag/v1.4.0)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;34 patches total
+> **[v1.5.0-dev.1](https://github.com/dieroboter/morphe-patches/releases/tag/v1.5.0-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;37 patches total
+<details>
+<summary>File Manager&nbsp;&nbsp;•&nbsp;&nbsp;3 patches</summary>
+<br>
+
+**Supported versions:**
+
+| 3.8.3 |
+| :---: |
+
+| Patch | Description | Options |
+|----------|----------------|-----------|
+| [Disable analytics and telemetry](#disable-analytics-and-telemetry) | Stops the app's event reporting: its own analytics forwarder and Firebase Analytics' event and user-property methods are no-oped, and the developer crash reporter is never started. Firebase Analytics collection was already disabled by the developer; this removes the remaining plumbing. Remote Config is left running - it is the app's configuration channel, not an event pipeline. |  |
+| [Remove ad and tracking components](#remove-ad-and-tracking-components) | Removes from the manifest: the AdMob and Firebase auto-init providers and Firebase's measurement and sessions components, so those SDKs do not start at app start; and the ad-tracking permissions (AD_ID, the Ad Services permissions and the install referrer permission). |  |
+| [Unlock premium](#unlock-premium) | Reports a valid Premium Basic license to the app: the license manager's verdict methods are made to answer yes, so premium features unlock and ads stop (the app serves no ads to licensed users). The billing code itself is untouched - nothing is purchased. |  |
+
+</details>
+
 <details>
 <summary>Flappy Bird&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
