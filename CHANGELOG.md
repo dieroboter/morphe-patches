@@ -1,3 +1,9 @@
+## [1.5.0-dev.4](https://github.com/dieroboter/morphe-patches/compare/v1.5.0-dev.3...v1.5.0-dev.4) (2026-10-20)
+
+### New Features
+
+* Add MediaInfo remove premium references patch ([8d9887a](https://github.com/dieroboter/morphe-patches/commit/8d9887a6d6217bfe07f6fd19b1210542ae12fb67))
+
 ## [1.5.0-dev.3](https://github.com/dieroboter/morphe-patches/compare/v1.5.0-dev.2...v1.5.0-dev.3) (2026-10-20)
 
 ### New Features

@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.5.0-dev.3",
+  "version": "1.5.0-dev.4",
   "patches": [
     {
       "name": "Adapt to modern displays",
@@ -798,6 +798,32 @@
           "targets": [
             {
               "version": "2.4.0",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Remove premium references",
+      "description": "Removes the visible premium branding: the Subscribe / Manage subscription entry is deleted from the main screen's menu, and the Premium header over the Preferences settings is blanked. The settings themselves stay, and the subscribe screen remains in the app but is no longer reachable.",
+      "default": true,
+      "category": null,
+      "compatiblePackages": [
+        {
+          "packageName": "net.mediaarea.mediainfo",
+          "name": "MediaInfo",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": null,
+          "signatures": null,
+          "targets": [
+            {
+              "version": "26.10",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
