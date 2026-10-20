@@ -15,7 +15,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 ## Patches list
 
 <!-- PATCHES_START -->
-> **[v1.5.0-dev.5](https://github.com/dieroboter/morphe-patches/releases/tag/v1.5.0-dev.5)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;40 patches total
+> **[v1.5.0-dev.6](https://github.com/dieroboter/morphe-patches/releases/tag/v1.5.0-dev.6)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;40 patches total
 <details>
 <summary>File Manager&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
@@ -138,7 +138,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 
 | Patch | Description | Options |
 |----------|----------------|-----------|
-| [Remove premium references](#remove-premium-references) | Removes the visible premium branding: the Subscribe / Manage subscription entry is deleted from the main screen's menu, and the Premium header over the Preferences settings is blanked in every language the app ships. The settings themselves stay, and the subscribe screen remains in the app but is no longer reachable. |  |
+| [Remove premium references](#remove-premium-references) | Removes the visible premium branding: the Subscribe / Manage subscription entry is deleted from the main screen's menu, and the Premium section over the Preferences settings is removed outright (its settings move up into the plain list). The settings themselves stay, and the subscribe screen remains in the app but is no longer reachable. |  |
 | [Unlock premium](#unlock-premium) | Unlocks MediaInfo's premium (the dark theme and subscriber features). The subscription verdict is a purely local Play Billing result held by the app's billing manager; this patch makes that verdict permanently 'subscribed'. No account or server is involved - the app has neither. |  |
 
 </details>

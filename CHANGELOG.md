@@ -1,3 +1,9 @@
+## [1.5.0-dev.6](https://github.com/dieroboter/morphe-patches/compare/v1.5.0-dev.5...v1.5.0-dev.6) (2026-10-20)
+
+### Bug Fixes
+
+* Remove the MediaInfo premium category instead of blanking it ([dc4bc04](https://github.com/dieroboter/morphe-patches/commit/dc4bc04d9e20ec0ab8f5488ac5d509f859f49ab2))
+
 ## [1.5.0-dev.5](https://github.com/dieroboter/morphe-patches/compare/v1.5.0-dev.4...v1.5.0-dev.5) (2026-10-20)
 
 ### Bug Fixes
