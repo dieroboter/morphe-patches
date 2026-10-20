@@ -86,4 +86,15 @@ object Constants {
             )
         )
     )
+
+    val COMPATIBILITY_FILE_MANAGER = Compatibility(
+        name = "File Manager",
+        packageName = "com.alphainventor.filemanager",
+        apkFileType = ApkFileType.APK,
+        targets = listOf(
+            AppTarget(
+                version = "3.8.3"
+            )
+        )
+    )
 }
