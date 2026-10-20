@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.5.0-dev.4",
+  "version": "1.5.0-dev.5",
   "patches": [
     {
       "name": "Adapt to modern displays",
@@ -810,7 +810,7 @@
     },
     {
       "name": "Remove premium references",
-      "description": "Removes the visible premium branding: the Subscribe / Manage subscription entry is deleted from the main screen's menu, and the Premium header over the Preferences settings is blanked. The settings themselves stay, and the subscribe screen remains in the app but is no longer reachable.",
+      "description": "Removes the visible premium branding: the Subscribe / Manage subscription entry is deleted from the main screen's menu, and the Premium header over the Preferences settings is blanked in every language the app ships. The settings themselves stay, and the subscribe screen remains in the app but is no longer reachable.",
       "default": true,
       "category": null,
       "compatiblePackages": [

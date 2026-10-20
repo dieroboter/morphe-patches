@@ -1,3 +1,9 @@
+## [1.5.0-dev.5](https://github.com/dieroboter/morphe-patches/compare/v1.5.0-dev.4...v1.5.0-dev.5) (2026-10-20)
+
+### Bug Fixes
+
+* Blank MediaInfo premium strings in every locale override ([033dd5e](https://github.com/dieroboter/morphe-patches/commit/033dd5e3428aac4b8b40737eba8a8ee4a762dc0d))
+
 ## [1.5.0-dev.4](https://github.com/dieroboter/morphe-patches/compare/v1.5.0-dev.3...v1.5.0-dev.4) (2026-10-20)
 
 ### New Features
