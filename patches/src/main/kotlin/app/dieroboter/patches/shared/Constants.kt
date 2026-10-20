@@ -77,7 +77,7 @@ object Constants {
     )
 
     val COMPATIBILITY_KLONDIKE = Compatibility(
-        name = "Solitaire",
+        name = "Klondike Solitaire",
         packageName = "com.smilerlee.klondike",
         apkFileType = ApkFileType.APK,
         targets = listOf(
