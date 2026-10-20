@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.5.0-dev.1",
+  "version": "1.5.0-dev.2",
   "patches": [
     {
       "name": "Adapt to modern displays",
@@ -590,6 +590,32 @@
           "targets": [
             {
               "version": "2.4.0",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Hide premium section in settings",
+      "description": "Hides the Premium category and its entry at the top of the Settings screen by setting both preferences invisible whenever the settings screen refreshes. Premium stays unlocked and the payment screen remains reachable from the main menu - only the Settings section is hidden.",
+      "default": true,
+      "category": null,
+      "compatiblePackages": [
+        {
+          "packageName": "com.alphainventor.filemanager",
+          "name": "File Manager",
+          "description": null,
+          "apkFileType": "APK",
+          "appIconColor": null,
+          "signatures": null,
+          "targets": [
+            {
+              "version": "3.8.3",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,

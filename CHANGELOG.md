@@ -1,3 +1,9 @@
+## [1.5.0-dev.2](https://github.com/dieroboter/morphe-patches/compare/v1.5.0-dev.1...v1.5.0-dev.2) (2026-10-20)
+
+### New Features
+
+* Add File Manager hide premium settings patch ([fb582e1](https://github.com/dieroboter/morphe-patches/commit/fb582e1fe31b93f287e8ff093292c234faf476da))
+
 ## [1.5.0-dev.1](https://github.com/dieroboter/morphe-patches/compare/v1.4.0...v1.5.0-dev.1) (2026-10-20)
 
 ### New Features
