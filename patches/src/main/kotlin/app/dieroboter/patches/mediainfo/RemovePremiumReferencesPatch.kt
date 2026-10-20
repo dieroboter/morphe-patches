@@ -2,11 +2,37 @@ package app.dieroboter.patches.mediainfo
 
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.resourcePatch
+import app.morphe.patcher.util.Document
 import app.dieroboter.patches.shared.Constants.COMPATIBILITY_MEDIAINFO
 import org.w3c.dom.Element
 
 /** The two strings that brand the Preferences category as a premium section. */
 private val PREMIUM_STRINGS = setOf("premium_title", "premium_summary")
+
+/**
+ * Every values file that defines the premium strings in 26.10: the default
+ * file plus 14 locale overrides. The device locale selects the override
+ * (English renders premium_summary as "Premium subscribers features", not
+ * the default text), so blanking only the default file leaves the header
+ * visible on any device whose locale has its own definition.
+ */
+private val PREMIUM_STRING_FILES = listOf(
+    "res/values/strings.xml",
+    "res/values-cs/strings.xml",
+    "res/values-de/strings.xml",
+    "res/values-en/strings.xml",
+    "res/values-es/strings.xml",
+    "res/values-fr/strings.xml",
+    "res/values-id/strings.xml",
+    "res/values-it/strings.xml",
+    "res/values-ja/strings.xml",
+    "res/values-pt/strings.xml",
+    "res/values-pt-rBR/strings.xml",
+    "res/values-ru/strings.xml",
+    "res/values-tr/strings.xml",
+    "res/values-uk/strings.xml",
+    "res/values-zh-rCN/strings.xml"
+)
 
 /** res/menu/menu_main.xml with the subscription item removed (stock content, decoded). */
 private val MENU_WITHOUT_SUBSCRIBE = """
@@ -16,6 +42,20 @@ private val MENU_WITHOUT_SUBSCRIBE = """
     <item android:id="@id/action_about" android:title="@string/about_title" />
 </menu>
 """.trimIndent() + "\n"
+
+/** Blanks every premium string defined in [document]; returns how many were blanked. */
+private fun blankPremiumStrings(document: Document): Int {
+    val nodes = document.getElementsByTagName("string")
+    var blanked = 0
+    for (i in 0 until nodes.length) {
+        val element = nodes.item(i) as Element
+        if (element.getAttribute("name") in PREMIUM_STRINGS) {
+            element.textContent = ""
+            blanked++
+        }
+    }
+    return blanked
+}
 
 /**
  * Remove premium references (MediaInfo 26.10).
@@ -34,11 +74,14 @@ private val MENU_WITHOUT_SUBSCRIBE = """
  * - The Preferences screen (res/xml/fragment_settings.xml) groups
  *   Language, Translate reports and Dark mode under a PreferenceCategory
  *   titled by the strings premium_title ("Premium") and premium_summary
- *   ("Exclusive features for premium subscribers"). The patch blanks both
- *   strings, so the category header renders as nothing and the three
- *   settings - which are real settings and stay - sit in a plain list.
- *   The settings fragment looks its preferences up by their own keys and
- *   never references the category, so blanking its title is safe.
+ *   ("Exclusive features for premium subscribers" by default, "Premium
+ *   subscribers features" in the English override). The patch blanks both
+ *   strings in every values file that defines them - the default file and
+ *   all 14 locale overrides - so the category header renders as nothing
+ *   whatever the device locale, and the three settings - which are real
+ *   settings and stay - sit in a plain list. The settings fragment looks
+ *   its preferences up by their own keys and never references the
+ *   category, so blanking its title is safe.
  *
  * The menu rewrite is guarded: if the staged menu does not mention
  * action_subscribe, the patch fails loudly instead of overwriting an
@@ -49,29 +92,32 @@ val removePremiumReferencesPatch = resourcePatch(
     name = "Remove premium references",
     description = "Removes the visible premium branding: the Subscribe / Manage " +
         "subscription entry is deleted from the main screen's menu, and the Premium " +
-        "header over the Preferences settings is blanked. The settings themselves stay, " +
-        "and the subscribe screen remains in the app but is no longer reachable.",
+        "header over the Preferences settings is blanked in every language the app " +
+        "ships. The settings themselves stay, and the subscribe screen remains in " +
+        "the app but is no longer reachable.",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_MEDIAINFO)
 
     execute {
-        // Blank the Preferences category's premium title and summary.
-        document("res/values/strings.xml").use { document ->
-            val nodes = document.getElementsByTagName("string")
-            var blanked = 0
-            for (i in 0 until nodes.length) {
-                val element = nodes.item(i) as Element
-                if (element.getAttribute("name") in PREMIUM_STRINGS) {
-                    element.textContent = ""
-                    blanked++
-                }
-            }
+        // Blank the Preferences category's premium title and summary in the
+        // default values file (the anchor: both strings must be there)...
+        val defaultFile = PREMIUM_STRING_FILES.first()
+        document(defaultFile).use { document ->
+            val blanked = blankPremiumStrings(document)
             if (blanked != PREMIUM_STRINGS.size) {
                 throw PatchException(
                     "MediaInfo anchor failed: blanked $blanked of ${PREMIUM_STRINGS.size} " +
-                        "premium strings in res/values/strings.xml."
+                        "premium strings in $defaultFile."
                 )
+            }
+        }
+        // ...and in every locale override that defines its own text.
+        for (path in PREMIUM_STRING_FILES.drop(1)) {
+            try {
+                document(path).use { document -> blankPremiumStrings(document) }
+            } catch (_: Exception) {
+                // Locale not present in this build's decoded resources; nothing to blank.
             }
         }
 
