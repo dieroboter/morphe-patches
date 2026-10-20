@@ -1,3 +1,9 @@
+## [1.5.0-dev.3](https://github.com/dieroboter/morphe-patches/compare/v1.5.0-dev.2...v1.5.0-dev.3) (2026-10-20)
+
+### New Features
+
+* Add MediaInfo unlock premium patch ([cbc49d4](https://github.com/dieroboter/morphe-patches/commit/cbc49d4b7dc704e6ec93eec5908f0598384da3eb))
+
 ## [1.5.0-dev.2](https://github.com/dieroboter/morphe-patches/compare/v1.5.0-dev.1...v1.5.0-dev.2) (2026-10-20)
 
 ### New Features

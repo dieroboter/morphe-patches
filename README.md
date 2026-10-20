@@ -15,7 +15,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 ## Patches list
 
 <!-- PATCHES_START -->
-> **[v1.5.0-dev.2](https://github.com/dieroboter/morphe-patches/releases/tag/v1.5.0-dev.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;38 patches total
+> **[v1.5.0-dev.3](https://github.com/dieroboter/morphe-patches/releases/tag/v1.5.0-dev.3)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;39 patches total
 <details>
 <summary>File Manager&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
@@ -124,6 +124,21 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 | [Disable rate prompts](#disable-rate-prompts) | Disables the in-app rate-us prompts (the SDK's rate-dialog source gate always returns false) and hides the 'Rate us' row in the settings screen. |  |
 | [Strip ad tracking permissions](#strip-ad-tracking-permissions) | Removes the ad identifier permissions (AD_ID and the Ad Services permissions: ad ID, attribution and topics) from the manifest. |  |
 | [Unlock premium](#unlock-premium) | Unlocks premium: forces the PremiumHelper SDK's isPremium check to always return true, which also suppresses banner/interstitial ads and the paywall and relaunch offers through the SDK's own premium paths. |  |
+
+</details>
+
+<details>
+<summary>MediaInfo&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
+<br>
+
+**Supported versions:**
+
+| 26.10 |
+| :---: |
+
+| Patch | Description | Options |
+|----------|----------------|-----------|
+| [Unlock premium](#unlock-premium) | Unlocks MediaInfo's premium (the dark theme and subscriber features). The subscription verdict is a purely local Play Billing result held by the app's billing manager; this patch makes that verdict permanently 'subscribed'. No account or server is involved - the app has neither. |  |
 
 </details>
 

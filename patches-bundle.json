@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-10-20T01:45:37",
-  "description": "## [1.5.0-dev.2](https://github.com/dieroboter/morphe-patches/compare/v1.5.0-dev.1...v1.5.0-dev.2) (2026-10-20)\n\n### New Features\n\n* Add File Manager hide premium settings patch ([fb582e1](https://github.com/dieroboter/morphe-patches/commit/fb582e1fe31b93f287e8ff093292c234faf476da))",
-  "download_url": "https://github.com/dieroboter/morphe-patches/releases/download/v1.5.0-dev.2/patches-1.5.0-dev.2.mpp",
+  "created_at": "2026-10-20T02:36:26",
+  "description": "## [1.5.0-dev.3](https://github.com/dieroboter/morphe-patches/compare/v1.5.0-dev.2...v1.5.0-dev.3) (2026-10-20)\n\n### New Features\n\n* Add MediaInfo unlock premium patch ([cbc49d4](https://github.com/dieroboter/morphe-patches/commit/cbc49d4b7dc704e6ec93eec5908f0598384da3eb))",
+  "download_url": "https://github.com/dieroboter/morphe-patches/releases/download/v1.5.0-dev.3/patches-1.5.0-dev.3.mpp",
   "signature_download_url": "",
-  "version": "1.5.0-dev.2"
+  "version": "1.5.0-dev.3"
 }
