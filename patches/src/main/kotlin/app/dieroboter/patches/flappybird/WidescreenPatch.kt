@@ -171,6 +171,15 @@ private const val ONCREATE_WINDOW_BLOCK = """
  * built from adaptiveHeight; v0 and v2 are scratch (the stock method writes
  * both before reading them), v1 holds H.
  *
+ * The size comes from Display.getRealMetrics (the full physical panel),
+ * NOT Resources.getDisplayMetrics: at engine-init time the latter can
+ * report the app-area height with system-bar/cutout insets still deducted
+ * (observed on a 1080x2400 phone: 2100 px, yielding H=560 instead of 640;
+ * the Fill resolution policy then stretched the 560 world onto the full
+ * panel, distorting every layout proportion). Real metrics are immune to
+ * the window state, and on displays where the plain metrics were already
+ * the full panel they return the same numbers.
+ *
  * Every derived value is the linear function of H that passes through both
  * known layouts (stock at H=512, the port at H=640), so H=512 reproduces
  * stock exactly and H=640 reproduces the port exactly:
@@ -186,13 +195,16 @@ private const val ONCREATE_WINDOW_BLOCK = """
  * above it, so both known layouts stay exact.
  */
 private const val ADAPTIVE_COMPUTE_BLOCK = """
-    invoke-virtual {p0}, Lcom/dotgears/GameActivity;->getResources()Landroid/content/res/Resources;
+    invoke-virtual {p0}, Lcom/dotgears/GameActivity;->getWindowManager()Landroid/view/WindowManager;
     move-result-object v0
-    invoke-virtual {v0}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
+    invoke-interface {v0}, Landroid/view/WindowManager;->getDefaultDisplay()Landroid/view/Display;
     move-result-object v0
-    iget v1, v0, Landroid/util/DisplayMetrics;->heightPixels:I
+    new-instance v2, Landroid/util/DisplayMetrics;
+    invoke-direct {v2}, Landroid/util/DisplayMetrics;-><init>()V
+    invoke-virtual {v0, v2}, Landroid/view/Display;->getRealMetrics(Landroid/util/DisplayMetrics;)V
+    iget v1, v2, Landroid/util/DisplayMetrics;->heightPixels:I
     int-to-float v1, v1
-    iget v0, v0, Landroid/util/DisplayMetrics;->widthPixels:I
+    iget v0, v2, Landroid/util/DisplayMetrics;->widthPixels:I
     int-to-float v0, v0
     div-float/2addr v1, v0
     const/high16 v0, 0x43900000
