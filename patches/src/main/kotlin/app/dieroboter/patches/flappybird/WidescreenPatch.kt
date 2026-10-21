@@ -377,15 +377,7 @@ private const val SETUP_BLOCK = """
 @Suppress("unused")
 val widescreenPatch = bytecodePatch(
     name = "Adapt to modern displays",
-    description = "Adapts the game world to the display: the world height is computed at " +
-        "startup from the screen size (288 units wide, height scaled to the screen, " +
-        "from a minimum of 384), and the scene, pipe and texture geometry follows it, " +
-        "so the game adapts to any screen from 4:3 up through tall phones without " +
-        "bars. On screens shorter than the original 16:9 the background is anchored " +
-        "to the ground, so its skyline and bushes stay sitting on the ground " +
-        "instead of sinking behind it. Also adds display-cutout and immersive window handling (fixes the " +
-        "black bar on tall screens) and moves the per-frame texture setup to a " +
-        "one-time init call (the port's flicker fix).",
+    description = "Adapts the game world to the display: the world height is computed at startup from the screen size, and the scene, pipe and texture geometry follows it, so the game adapts to any screen from 4:3 up through tall phones without bars. On screens shorter than the original 16:9 the background is anchored to the ground, so its skyline and bushes stay sitting on the ground instead of sinking behind it. Also adds display-cutout and immersive window handling and moves the per-frame texture setup to a one-time init call.",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_FLAPPY_BIRD)
