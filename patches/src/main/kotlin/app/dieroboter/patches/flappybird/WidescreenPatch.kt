@@ -166,10 +166,30 @@ private const val ONCREATE_WINDOW_BLOCK = """
 /**
  * Computes the adaptive layout values from the display size and stores them
  * in GameActivity's static fields. World height H = 288 * screenHeight /
- * screenWidth, clamped to a minimum of 384 (the 4:3 layout height). Runs at
- * the top of GameActivity.a(), before the camera and resolution policy are
- * built from adaptiveHeight; v0 and v2 are scratch (the stock method writes
- * both before reading them), v1 holds H.
+ * screenWidth, clamped to a minimum of 384 (the 4:3 layout height) and a
+ * maximum of 560 (see below). Runs at the top of GameActivity.a(), before
+ * the camera and resolution policy are built from adaptiveHeight; v0 and
+ * v2 are scratch (the stock method writes both before reading them), v1
+ * holds H.
+ *
+ * The size comes from Display.getRealMetrics (the full physical panel),
+ * NOT Resources.getDisplayMetrics: at engine-init time the latter can
+ * report the app-area height with system-bar/cutout insets still deducted
+ * (observed on a 1080x2400 phone: 2100 px, yielding H=560 instead of 640),
+ * and with that inconsistent input the render mapping fell a few pixels
+ * short of the panel's bottom edge - a black sliver under the ground with
+ * the pipes (which extend below the world bottom) showing through it.
+ * Real metrics are immune to the window state, and on displays where the
+ * plain metrics were already the full panel they return the same numbers.
+ *
+ * The 560 ceiling is deliberate, at the user's request: it keeps the
+ * framing that the accidental 560 layout produced on his phone (sprites
+ * ~14% larger than the 640 layout). The engine cover-scales the world to
+ * the panel and crops the side margins symmetrically; every UI element in
+ * this game is center- or bottom-anchored, so the panel and buttons keep
+ * their distances from the screen edges and only the scrolling pipes and
+ * the background edges ever leave the frame. Screens whose natural H is
+ * below 560 (16:9 and shorter) never reach the ceiling.
  *
  * Every derived value is the linear function of H that passes through both
  * known layouts (stock at H=512, the port at H=640), so H=512 reproduces
@@ -186,13 +206,16 @@ private const val ONCREATE_WINDOW_BLOCK = """
  * above it, so both known layouts stay exact.
  */
 private const val ADAPTIVE_COMPUTE_BLOCK = """
-    invoke-virtual {p0}, Lcom/dotgears/GameActivity;->getResources()Landroid/content/res/Resources;
+    invoke-virtual {p0}, Lcom/dotgears/GameActivity;->getWindowManager()Landroid/view/WindowManager;
     move-result-object v0
-    invoke-virtual {v0}, Landroid/content/res/Resources;->getDisplayMetrics()Landroid/util/DisplayMetrics;
+    invoke-interface {v0}, Landroid/view/WindowManager;->getDefaultDisplay()Landroid/view/Display;
     move-result-object v0
-    iget v1, v0, Landroid/util/DisplayMetrics;->heightPixels:I
+    new-instance v2, Landroid/util/DisplayMetrics;
+    invoke-direct {v2}, Landroid/util/DisplayMetrics;-><init>()V
+    invoke-virtual {v0, v2}, Landroid/view/Display;->getRealMetrics(Landroid/util/DisplayMetrics;)V
+    iget v1, v2, Landroid/util/DisplayMetrics;->heightPixels:I
     int-to-float v1, v1
-    iget v0, v0, Landroid/util/DisplayMetrics;->widthPixels:I
+    iget v0, v2, Landroid/util/DisplayMetrics;->widthPixels:I
     int-to-float v0, v0
     div-float/2addr v1, v0
     const/high16 v0, 0x43900000
@@ -202,6 +225,9 @@ private const val ADAPTIVE_COMPUTE_BLOCK = """
     if-gez v0, :flappy_adaptive_clamped
     const/high16 v1, 0x43c00000
     :flappy_adaptive_clamped
+    const/high16 v0, 0x440c0000
+    invoke-static {v1, v0}, Ljava/lang/Math;->min(FF)F
+    move-result v1
     sput v1, Lcom/dotgears/GameActivity;->adaptiveHeight:F
     float-to-int v0, v1
     sput v0, Lcom/dotgears/GameActivity;->adaptiveHeightInt:I
@@ -322,7 +348,8 @@ private const val SETUP_BLOCK = """
  * 640-unit world to the actual display:
  *
  * - The world height is computed at startup from the screen size (288 units
- *   wide, height scaled to the display, never below 384, the 4:3 height),
+ *   wide, height scaled to the display, never below 384, the 4:3 height,
+ *   and never above 560, the framing ceiling),
  *   and the camera and resolution policy are built from it. Every layout
  *   constant the port baked for 640 becomes a read of a derived value of
  *   that height (see ADAPTIVE_COMPUTE_BLOCK), so the game adapts to any
@@ -350,15 +377,7 @@ private const val SETUP_BLOCK = """
 @Suppress("unused")
 val widescreenPatch = bytecodePatch(
     name = "Adapt to modern displays",
-    description = "Adapts the game world to the display: the world height is computed at " +
-        "startup from the screen size (288 units wide, height scaled to the screen, " +
-        "from a minimum of 384), and the scene, pipe and texture geometry follows it, " +
-        "so the game adapts to any screen from 4:3 up through tall phones without " +
-        "bars. On screens shorter than the original 16:9 the background is anchored " +
-        "to the ground, so its skyline and bushes stay sitting on the ground " +
-        "instead of sinking behind it. Also adds display-cutout and immersive window handling (fixes the " +
-        "black bar on tall screens) and moves the per-frame texture setup to a " +
-        "one-time init call (the port's flicker fix).",
+    description = "Adapts the game world to the display: the world height is computed at startup from the screen size, and the scene, pipe and texture geometry follows it, so the game adapts to any screen from 4:3 up through tall phones without bars. On screens shorter than the original 16:9 the background is anchored to the ground, so its skyline and bushes stay sitting on the ground instead of sinking behind it. Also adds display-cutout and immersive window handling and moves the per-frame texture setup to a one-time init call.",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_FLAPPY_BIRD)

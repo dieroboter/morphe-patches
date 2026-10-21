@@ -1,3 +1,9 @@
+## [1.5.1-dev.1](https://github.com/dieroboter/morphe-patches/compare/v1.5.0...v1.5.1-dev.1) (2026-10-21)
+
+### Bug Fixes
+
+* Compute Flappy world height from the real display size ([8149e6c](https://github.com/dieroboter/morphe-patches/commit/8149e6ca823bf0bc61803e597645ac3bfe585cbe))
+
 ## [1.5.0](https://github.com/dieroboter/morphe-patches/compare/v1.4.0...v1.5.0) (2026-10-20)
 
 ### Bug Fixes

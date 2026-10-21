@@ -28,14 +28,15 @@ private val LOCALE_DIRS = listOf(
  *
  * - Manifest: the game activity becomes the launcher (the splash activity and
  *   the AdMob activity are removed), the INTERNET and ACCESS_NETWORK_STATE
- *   permissions go away, the activity gains the configChanges / exported /
- *   display-cutout attributes of the port, and the SDK levels are raised to
+ *   permissions go away, the activity gains the configChanges / exported
+ *   attributes of the port (the cutout mode itself is set at runtime), and
+ *   the SDK levels are raised to
  *   the port's min 14 / target 34. The app's version is NOT changed (the
  *   port build stamped its own 1.12 / versionCode 13; the patches leave the
  *   stock 1.3 / versionCode 4 in place).
  * - An adaptive launcher icon (foreground/monochrome drawables, mipmap
  *   anydpi XML, teal background color) replaces the legacy icon reference.
- * - AppTheme gains the fullscreen + shortEdges cutout items.
+ * - AppTheme gains the fullscreen item (the cutout mode is set at runtime).
  * - The dead Google sign-in resource cluster (button drawables, +1 images,
  *   colors and strings in every locale) and the splash layout/image are
  *   deleted, as in the port.
@@ -45,13 +46,7 @@ private val LOCALE_DIRS = listOf(
 @Suppress("unused")
 val modernizeResourcesPatch = resourcePatch(
     name = "Modernize manifest and resources",
-    description = "Makes the game activity the launcher and removes the splash screen and " +
-        "AdMob activity, drops the INTERNET and ACCESS_NETWORK_STATE permissions, raises " +
-        "the SDK levels to the port's min 14 / target 34 (current Android refuses to " +
-        "install the stock target 15), adds an adaptive launcher icon and display-cutout " +
-        "theme settings, removes the dead Google sign-in resources, and replaces the " +
-        "sound effects with the port's re-encoded versions. The app's version is " +
-        "left untouched.",
+    description = "Makes the game activity the launcher and removes the splash screen and AdMob activity, drops the INTERNET and ACCESS_NETWORK_STATE permissions, raises the SDK levels to the port's min 14 / target 34 (current Android refuses to install the stock target 15), adds an adaptive launcher icon, removes the dead Google sign-in resources, and replaces the sound effects with re-encoded versions.",
     default = true
 ) {
     compatibleWith(COMPATIBILITY_FLAPPY_BIRD)
