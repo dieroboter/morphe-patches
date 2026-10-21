@@ -1,3 +1,10 @@
+## [1.5.1-dev.2](https://github.com/dieroboter/morphe-patches/compare/v1.5.1-dev.1...v1.5.1-dev.2) (2026-10-21)
+
+### Bug Fixes
+
+* Cap the Flappy world height at 560 on tall screens ([8a72140](https://github.com/dieroboter/morphe-patches/commit/8a72140fd97163fb547d2fe1e075e76e3bdb25c5))
+* Correct the Flappy Adapt and Modernize patch descriptions ([5b65bf3](https://github.com/dieroboter/morphe-patches/commit/5b65bf325858082cef03e1d8e957fb388f3f409b))
+
 ## [1.5.1-dev.1](https://github.com/dieroboter/morphe-patches/compare/v1.5.0...v1.5.1-dev.1) (2026-10-21)
 
 ### Bug Fixes
