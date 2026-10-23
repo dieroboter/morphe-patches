@@ -1,3 +1,9 @@
+## [1.5.2-dev.2](https://github.com/dieroboter/morphe-patches/compare/v1.5.2-dev.1...v1.5.2-dev.2) (2026-10-23)
+
+### Bug Fixes
+
+* Hide the GIF Maker home bar rate button too ([64e1bf8](https://github.com/dieroboter/morphe-patches/commit/64e1bf8dd6e7f80b130590805937aa010f516d2e))
+
 ## [1.5.2-dev.1](https://github.com/dieroboter/morphe-patches/compare/v1.5.1...v1.5.2-dev.1) (2026-10-23)
 
 ### Bug Fixes

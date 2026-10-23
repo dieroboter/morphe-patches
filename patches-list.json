@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.5.2-dev.1",
+  "version": "1.5.2-dev.2",
   "patches": [
     {
       "name": "Adapt to modern displays",
@@ -628,7 +628,7 @@
     },
     {
       "name": "Hide settings buttons",
-      "description": "Hides the 'VIP Customer Support', 'Rate us' and 'Share app' rows in the settings screen. The support button on the home screen is not affected.",
+      "description": "Hides the 'VIP Customer Support', 'Rate us' and 'Share app' rows in the settings screen, and the rate button on the home screen bar. The support button on the home screen is not affected.",
       "default": true,
       "category": null,
       "compatiblePackages": [
