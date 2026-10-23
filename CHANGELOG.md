@@ -1,3 +1,9 @@
+## [1.5.2-dev.1](https://github.com/dieroboter/morphe-patches/compare/v1.5.1...v1.5.2-dev.1) (2026-10-23)
+
+### Bug Fixes
+
+* Hide the VIP support, rate and share rows in GIF Maker settings ([6c42dcd](https://github.com/dieroboter/morphe-patches/commit/6c42dcdaa779c7eb88831aff708cc96bc4ee6eb7))
+
 ## [1.5.1](https://github.com/dieroboter/morphe-patches/compare/v1.5.0...v1.5.1) (2026-10-21)
 
 ### Bug Fixes
