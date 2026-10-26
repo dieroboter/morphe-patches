@@ -133,9 +133,19 @@ private fun MutableMethod.replacePipeSetupWithFlags(fieldRef: String, span: Int)
     )
 }
 
+// Window block inserted into GameActivity.onCreate right after the super
+// call. The getDecorView() up front is load-bearing: on Android 17
+// PhoneWindow.getInsetsController() dereferences the DecorView field
+// directly, so calling it before the DecorView exists throws inside the
+// framework getter (the null-check on the returned controller below cannot
+// catch that). Forcing the DecorView into existence first keeps the insets
+// call safe on Android 17 and changes nothing on older versions, where the
+// getter created the DecorView itself.
 private const val ONCREATE_WINDOW_BLOCK = """
     invoke-virtual {p0}, Landroid/app/Activity;->getWindow()Landroid/view/Window;
     move-result-object v0
+    invoke-virtual {v0}, Landroid/view/Window;->getDecorView()Landroid/view/View;
+    move-result-object v1
     sget v1, Landroid/os/Build${'$'}VERSION;->SDK_INT:I
     const/16 v2, 0x1c
     if-lt v1, v2, :flappy_port_cond
@@ -416,8 +426,20 @@ val widescreenPatch = bytecodePatch(
             addInstructions(0, ADAPTIVE_COMPUTE_BLOCK)
         }
 
-        // onCreate: prepend the port's cutout/immersive window block.
-        GameActivityOnCreateFingerprint.method.addInstructions(0, ONCREATE_WINDOW_BLOCK)
+        // onCreate: insert the port's cutout/immersive window block right
+        // after the super call (never at index 0: before super.onCreate the
+        // window has no DecorView, and on Android 17 getInsetsController()
+        // throws on the missing DecorView instead of returning null).
+        GameActivityOnCreateFingerprint.method.apply {
+            val superCall = requireFirstIndex {
+                it.opcode == Opcode.INVOKE_SUPER &&
+                    it.refString() == "Lorg/andengine/ui/activity/SimpleBaseGameActivity;->onCreate(Landroid/os/Bundle;)V"
+            }
+            if (superCall != 0) {
+                throw PatchException("Unexpected onCreate shape: super call is not first")
+            }
+            addInstructions(superCall + 1, ONCREATE_WINDOW_BLOCK)
+        }
 
         // Bird: init position is center-anchored (H/2 - 10); the update floor
         // checks run against the ground top (H - 112).
