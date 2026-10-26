@@ -1,3 +1,9 @@
+## [1.5.3-dev.2](https://github.com/dieroboter/morphe-patches/compare/v1.5.3-dev.1...v1.5.3-dev.2) (2026-10-26)
+
+### Bug Fixes
+
+* Fix Flappy VerifyError by targeting the onCreate window tail through an ExternalLabel ([c328546](https://github.com/dieroboter/morphe-patches/commit/c32854692d1c2796653c0153d516b145d422e49e))
+
 ## [1.5.3-dev.1](https://github.com/dieroboter/morphe-patches/compare/v1.5.2...v1.5.3-dev.1) (2026-10-26)
 
 ### Bug Fixes
