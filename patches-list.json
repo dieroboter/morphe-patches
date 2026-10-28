@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.5.3",
+  "version": "1.5.4-dev.1",
   "patches": [
     {
       "name": "Adapt to modern displays",
@@ -74,6 +74,13 @@
               "isExperimental": false,
               "minSdk": null,
               "description": null
+            },
+            {
+              "version": "2.2.148",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
             }
           ]
         }
@@ -96,6 +103,13 @@
           "targets": [
             {
               "version": "2.2.147",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "2.2.148",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -148,6 +162,13 @@
           "targets": [
             {
               "version": "2.2.147",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "2.2.148",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -256,6 +277,13 @@
               "isExperimental": false,
               "minSdk": null,
               "description": null
+            },
+            {
+              "version": "2.2.148",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
             }
           ]
         }
@@ -278,6 +306,13 @@
           "targets": [
             {
               "version": "2.2.147",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "2.2.148",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -356,6 +391,13 @@
           "targets": [
             {
               "version": "2.2.147",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "2.2.148",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -464,6 +506,13 @@
               "isExperimental": false,
               "minSdk": null,
               "description": null
+            },
+            {
+              "version": "2.2.148",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
             }
           ]
         }
@@ -490,6 +539,13 @@
               "isExperimental": false,
               "minSdk": null,
               "description": null
+            },
+            {
+              "version": "2.2.148",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
             }
           ]
         }
@@ -512,6 +568,13 @@
           "targets": [
             {
               "version": "2.2.147",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "2.2.148",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -550,6 +613,72 @@
     },
     {
       "name": "Disable rate prompts",
+      "description": "Makes AppRater.tryShowRateDialog a no-op, so the 'Thanks for playing!' rate prompt never shows. The explicit rate action is untouched.",
+      "default": true,
+      "category": null,
+      "compatiblePackages": [
+        {
+          "packageName": "com.robtopx.geometrydashmeltdown",
+          "name": "Geometry Dash Meltdown",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": null,
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.2.147",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "2.2.148",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable rate prompts",
+      "description": "Makes AppRater.tryShowRateDialog a no-op, so the 'Thanks for playing!' rate prompt never shows. The explicit rate action is untouched.",
+      "default": true,
+      "category": null,
+      "compatiblePackages": [
+        {
+          "packageName": "com.robtopx.geometrydashsubzero",
+          "name": "Geometry Dash SubZero",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": null,
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.2.147",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "2.2.148",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable rate prompts",
       "description": "Disables the in-app rate-us prompts (the SDK's rate-dialog source gate always returns false) and hides the 'Rate us' row in the settings screen.",
       "default": true,
       "category": null,
@@ -564,6 +693,39 @@
           "targets": [
             {
               "version": "2.0.8",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
+      "name": "Disable rate prompts",
+      "description": "Makes AppRater.tryShowRateDialog a no-op, so the 'Thanks for playing!' rate prompt never shows. The explicit rate action is untouched.",
+      "default": true,
+      "category": null,
+      "compatiblePackages": [
+        {
+          "packageName": "com.robtopx.geometrydashworld",
+          "name": "Geometry Dash World",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": null,
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.2.147",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "2.2.148",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -862,7 +1024,7 @@
     },
     {
       "name": "Strip ad tracking permissions",
-      "description": "Removes the ad identifier permissions (AD_ID and the Ad Services permissions: ad ID, attribution and topics) from the manifest.",
+      "description": "Removes the ad identifier permissions (AD_ID and the Ad Services permissions: ad ID, attribution and topics) and the Amazon PrivacyPass attestation permission from the manifest.",
       "default": true,
       "category": null,
       "compatiblePackages": [
@@ -880,6 +1042,13 @@
               "isExperimental": false,
               "minSdk": null,
               "description": null
+            },
+            {
+              "version": "2.2.148",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
             }
           ]
         }
@@ -888,7 +1057,7 @@
     },
     {
       "name": "Strip ad tracking permissions",
-      "description": "Removes the ad identifier permissions (AD_ID and the Ad Services permissions: ad ID, attribution and topics) from the manifest.",
+      "description": "Removes the ad identifier permissions (AD_ID and the Ad Services permissions: ad ID, attribution and topics) and the Amazon PrivacyPass attestation permission from the manifest.",
       "default": true,
       "category": null,
       "compatiblePackages": [
@@ -902,6 +1071,13 @@
           "targets": [
             {
               "version": "2.2.147",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "2.2.148",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -940,7 +1116,7 @@
     },
     {
       "name": "Strip ad tracking permissions",
-      "description": "Removes the ad identifier permissions (AD_ID and the Ad Services permissions: ad ID, attribution and topics) from the manifest.",
+      "description": "Removes the ad identifier permissions (AD_ID and the Ad Services permissions: ad ID, attribution and topics) and the Amazon PrivacyPass attestation permission from the manifest.",
       "default": true,
       "category": null,
       "compatiblePackages": [
@@ -954,6 +1130,13 @@
           "targets": [
             {
               "version": "2.2.147",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            },
+            {
+              "version": "2.2.148",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,

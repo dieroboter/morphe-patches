@@ -1,3 +1,9 @@
+## [1.5.4-dev.1](https://github.com/dieroboter/morphe-patches/compare/v1.5.3...v1.5.4-dev.1) (2026-10-28)
+
+### Bug Fixes
+
+* Geometry Dash trio 2.2.148 support, strip ATTEST, disable rate prompts ([82c159d](https://github.com/dieroboter/morphe-patches/commit/82c159d84043959adb41ba6f5a96bdbbc7a64689))
+
 ## [1.5.3](https://github.com/dieroboter/morphe-patches/compare/v1.5.2...v1.5.3) (2026-10-27)
 
 ### Bug Fixes
