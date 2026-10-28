@@ -1,3 +1,9 @@
+## [1.5.4-dev.2](https://github.com/dieroboter/morphe-patches/compare/v1.5.4-dev.1...v1.5.4-dev.2) (2026-10-28)
+
+### Bug Fixes
+
+* drop Geometry Dash 2.2.147 support, keep 2.2.148 only ([4b7226c](https://github.com/dieroboter/morphe-patches/commit/4b7226c26767ac350f5edb3d1b57669dca224366))
+
 ## [1.5.4-dev.1](https://github.com/dieroboter/morphe-patches/compare/v1.5.3...v1.5.4-dev.1) (2026-10-28)
 
 ### Bug Fixes

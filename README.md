@@ -15,7 +15,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 ## Patches list
 
 <!-- PATCHES_START -->
-> **[v1.5.4-dev.1](https://github.com/dieroboter/morphe-patches/releases/tag/v1.5.4-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;44 patches total
+> **[v1.5.4-dev.2](https://github.com/dieroboter/morphe-patches/releases/tag/v1.5.4-dev.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;44 patches total
 <details>
 <summary>File Manager&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
@@ -58,8 +58,8 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 
 **Supported versions:**
 
-| 2.2.147 | 2.2.148 |
-| :---: | :---: |
+| 2.2.148 |
+| :---: |
 
 | Patch | Description | Options |
 |----------|----------------|-----------|
@@ -77,8 +77,8 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 
 **Supported versions:**
 
-| 2.2.147 | 2.2.148 |
-| :---: | :---: |
+| 2.2.148 |
+| :---: |
 
 | Patch | Description | Options |
 |----------|----------------|-----------|
@@ -96,8 +96,8 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 
 **Supported versions:**
 
-| 2.2.147 | 2.2.148 |
-| :---: | :---: |
+| 2.2.148 |
+| :---: |
 
 | Patch | Description | Options |
 |----------|----------------|-----------|

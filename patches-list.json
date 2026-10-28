@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.5.4-dev.1",
+  "version": "1.5.4-dev.2",
   "patches": [
     {
       "name": "Adapt to modern displays",
@@ -69,13 +69,6 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.2.147",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
-            {
               "version": "2.2.148",
               "versionCodes": null,
               "isExperimental": false,
@@ -101,13 +94,6 @@
           "appIconColor": null,
           "signatures": null,
           "targets": [
-            {
-              "version": "2.2.147",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
             {
               "version": "2.2.148",
               "versionCodes": null,
@@ -160,13 +146,6 @@
           "appIconColor": null,
           "signatures": null,
           "targets": [
-            {
-              "version": "2.2.147",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
             {
               "version": "2.2.148",
               "versionCodes": null,
@@ -272,13 +251,6 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.2.147",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
-            {
               "version": "2.2.148",
               "versionCodes": null,
               "isExperimental": false,
@@ -304,13 +276,6 @@
           "appIconColor": null,
           "signatures": null,
           "targets": [
-            {
-              "version": "2.2.147",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
             {
               "version": "2.2.148",
               "versionCodes": null,
@@ -389,13 +354,6 @@
           "appIconColor": null,
           "signatures": null,
           "targets": [
-            {
-              "version": "2.2.147",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
             {
               "version": "2.2.148",
               "versionCodes": null,
@@ -501,13 +459,6 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.2.147",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
-            {
               "version": "2.2.148",
               "versionCodes": null,
               "isExperimental": false,
@@ -534,13 +485,6 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.2.147",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
-            {
               "version": "2.2.148",
               "versionCodes": null,
               "isExperimental": false,
@@ -566,13 +510,6 @@
           "appIconColor": null,
           "signatures": null,
           "targets": [
-            {
-              "version": "2.2.147",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
             {
               "version": "2.2.148",
               "versionCodes": null,
@@ -626,13 +563,6 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.2.147",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
-            {
               "version": "2.2.148",
               "versionCodes": null,
               "isExperimental": false,
@@ -658,13 +588,6 @@
           "appIconColor": null,
           "signatures": null,
           "targets": [
-            {
-              "version": "2.2.147",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
             {
               "version": "2.2.148",
               "versionCodes": null,
@@ -717,13 +640,6 @@
           "appIconColor": null,
           "signatures": null,
           "targets": [
-            {
-              "version": "2.2.147",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
             {
               "version": "2.2.148",
               "versionCodes": null,
@@ -1037,13 +953,6 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.2.147",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
-            {
               "version": "2.2.148",
               "versionCodes": null,
               "isExperimental": false,
@@ -1069,13 +978,6 @@
           "appIconColor": null,
           "signatures": null,
           "targets": [
-            {
-              "version": "2.2.147",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
             {
               "version": "2.2.148",
               "versionCodes": null,
@@ -1128,13 +1030,6 @@
           "appIconColor": null,
           "signatures": null,
           "targets": [
-            {
-              "version": "2.2.147",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
             {
               "version": "2.2.148",
               "versionCodes": null,
