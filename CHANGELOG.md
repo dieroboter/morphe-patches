@@ -1,3 +1,9 @@
+## [1.5.5](https://github.com/dieroboter/morphe-patches/compare/v1.5.4...v1.5.5) (2026-11-02)
+
+### Updated App Support
+
+* WiFi FTP Server 2.4.1 support, drop 2.4.0 ([735998d](https://github.com/dieroboter/morphe-patches/commit/735998ddc345a074b9ac1fab8e67b0e03943d2b4))
+
 ## [1.5.5-dev.2](https://github.com/dieroboter/morphe-patches/compare/v1.5.5-dev.1...v1.5.5-dev.2) (2026-11-02)
 
 ### New Features
