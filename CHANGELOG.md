@@ -1,3 +1,5 @@
+## [1.5.5-dev.3](https://github.com/dieroboter/morphe-patches/compare/v1.5.5-dev.2...v1.5.5-dev.3) (2026-11-02)
+
 ## [1.5.5-dev.2](https://github.com/dieroboter/morphe-patches/compare/v1.5.5-dev.1...v1.5.5-dev.2) (2026-11-02)
 
 ### New Features
