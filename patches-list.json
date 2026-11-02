@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.5.4",
+  "version": "1.5.5-dev.2",
   "patches": [
     {
       "name": "Adapt to modern displays",
@@ -173,7 +173,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.4.0",
+              "version": "2.4.1",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -329,7 +329,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.4.0",
+              "version": "2.4.1",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -537,7 +537,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.4.0",
+              "version": "2.4.1",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -667,7 +667,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.4.0",
+              "version": "2.4.1",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -745,7 +745,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.4.0",
+              "version": "2.4.1",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -783,6 +783,32 @@
       "options": []
     },
     {
+      "name": "Remove Contact developer menu item",
+      "description": "Removes the 'Contact developer' item from the main screen menu.",
+      "default": true,
+      "category": null,
+      "compatiblePackages": [
+        {
+          "packageName": "com.medhaapps.wififtpserver",
+          "name": "WiFi FTP Server",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#1C9CEC",
+          "signatures": null,
+          "targets": [
+            {
+              "version": "2.4.1",
+              "versionCodes": null,
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
+    },
+    {
       "name": "Remove Rate this app menu item",
       "description": "Removes the 'Rate this app' item, which opens the app's store listing, from the main screen menu.",
       "default": true,
@@ -797,7 +823,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.4.0",
+              "version": "2.4.1",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -901,7 +927,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.4.0",
+              "version": "2.4.1",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,
@@ -1057,7 +1083,7 @@
           "signatures": null,
           "targets": [
             {
-              "version": "2.4.0",
+              "version": "2.4.1",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,

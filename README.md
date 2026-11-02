@@ -15,7 +15,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 ## Patches list
 
 <!-- PATCHES_START -->
-> **[v1.5.4](https://github.com/dieroboter/morphe-patches/releases/tag/v1.5.4)**&nbsp;&nbsp;•&nbsp;&nbsp;`main`&nbsp;&nbsp;•&nbsp;&nbsp;44 patches total
+> **[v1.5.5-dev.2](https://github.com/dieroboter/morphe-patches/releases/tag/v1.5.5-dev.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;45 patches total
 <details>
 <summary>File Manager&nbsp;&nbsp;•&nbsp;&nbsp;4 patches</summary>
 <br>
@@ -165,12 +165,12 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 </details>
 
 <details>
-<summary>WiFi FTP Server&nbsp;&nbsp;•&nbsp;&nbsp;8 patches</summary>
+<summary>WiFi FTP Server&nbsp;&nbsp;•&nbsp;&nbsp;9 patches</summary>
 <br>
 
 **Supported versions:**
 
-| 2.4.0 |
+| 2.4.1 |
 | :---: |
 
 | Patch | Description | Options |
@@ -180,6 +180,7 @@ Click here to add these patches to Morphe: https://morphe.software/add-source?gi
 | [Disable mDNS service advertisement](#disable-mdns-service-advertisement) | Stops the server from announcing itself as 'WiFiFTP' over mDNS/NSD (_ftp._tcp) on the local network. Direct connections by IP address are unaffected. |  |
 | [Hide Get Pro version button](#hide-get-pro-version-button) | Hides the 'Get Pro version' button on the main screen, which only opens the paid Pro app's store listing. |  |
 | [Material You icon](#material-you-icon) | Replaces the legacy launcher icon with a Material You adaptive icon: white folder and WiFi glyph on the app's blue, with a monochrome layer for themed icons. |  |
+| [Remove Contact developer menu item](#remove-contact-developer-menu-item) | Removes the 'Contact developer' item from the main screen menu. |  |
 | [Remove Rate this app menu item](#remove-rate-this-app-menu-item) | Removes the 'Rate this app' item, which opens the app's store listing, from the main screen menu. |  |
 | [Remove banner ads](#remove-banner-ads) | Removes the AdMob banner ad from the main screen. The ads SDK is never initialized and the banner view is never created or loaded. |  |
 | [Strip ad tracking permissions and app ID](#strip-ad-tracking-permissions-and-app-id) | Removes the AdMob application ID, the MobileAds initialization provider and the ad identifier permissions (AD_ID and Ad Services) from the manifest. Requires 'Remove banner ads'. |  |
