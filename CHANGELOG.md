@@ -4,12 +4,6 @@
 
 * WiFi FTP Server 2.4.1 support, drop 2.4.0 ([735998d](https://github.com/dieroboter/morphe-patches/commit/735998ddc345a074b9ac1fab8e67b0e03943d2b4))
 
-## [1.5.5-dev.2](https://github.com/dieroboter/morphe-patches/compare/v1.5.5-dev.1...v1.5.5-dev.2) (2026-11-02)
-
-### New Features
-
-* add Remove Contact developer menu item patch for WiFi FTP Server ([b2d2600](https://github.com/dieroboter/morphe-patches/commit/b2d2600ee2a28f4db06ce20b04221c8e62917e61))
-
 ## [1.5.5-dev.1](https://github.com/dieroboter/morphe-patches/compare/v1.5.4...v1.5.5-dev.1) (2026-11-02)
 
 ### Updated App Support
