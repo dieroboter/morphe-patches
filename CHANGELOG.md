@@ -1,11 +1,3 @@
-## [1.5.5-dev.3](https://github.com/dieroboter/morphe-patches/compare/v1.5.5-dev.2...v1.5.5-dev.3) (2026-11-02)
-
-## [1.5.5-dev.2](https://github.com/dieroboter/morphe-patches/compare/v1.5.5-dev.1...v1.5.5-dev.2) (2026-11-02)
-
-### New Features
-
-* add Remove Contact developer menu item patch for WiFi FTP Server ([b2d2600](https://github.com/dieroboter/morphe-patches/commit/b2d2600ee2a28f4db06ce20b04221c8e62917e61))
-
 ## [1.5.5-dev.1](https://github.com/dieroboter/morphe-patches/compare/v1.5.4...v1.5.5-dev.1) (2026-11-02)
 
 ### Updated App Support
